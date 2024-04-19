@@ -17,18 +17,16 @@
     <None Remove="Windows\logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="flickFolio.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="Pages\" />
     <Folder Include="UserControls\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="System.Data.SQLite" Version="1.0.118" />
-    <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Fonts\Poppins\Poppins-Bold.ttf" />
@@ -36,5 +34,10 @@
     <Resource Include="Fonts\Poppins\Poppins-Regular.ttf" />
     <Resource Include="Images\Discarded idea-rafiki.png" />
     <Resource Include="Images\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Database\flickFolio.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
