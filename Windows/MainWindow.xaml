@@ -7,11 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Content="Lista filmova" HorizontalAlignment="Left" Margin="30,44,0,0" VerticalAlignment="Top" Height="53" Width="127" Click="Button_Click"/>
-        <Frame Name="MainFrame" BorderThickness="1" Margin="178,55,98,110" NavigationUIVisibility="Hidden" BorderBrush="Black" />
-        <Button Content="Lista majstora" HorizontalAlignment="Left" Margin="30,114,0,0" VerticalAlignment="Top" Height="53" Width="127" Click="Button_Click"/>
-        <Button Content="Lista mile majke" HorizontalAlignment="Left" Margin="30,201,0,0" VerticalAlignment="Top" Height="53" Width="127" Click="Button_Click"/>
-        <Button Content="rikverc" HorizontalAlignment="Left" Margin="78,308,0,0" VerticalAlignment="Top" Height="45" Width="53" Click="Button_Click_1"/>
+        <Button Name="btnGenres" Content="Žanrovi" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="53" Width="127" Click="btnGenres_Click"/>
+        <Frame Name="MainFrame" BorderThickness="1" Margin="150,10,10,10" NavigationUIVisibility="Hidden" BorderBrush="Black" />
 
     </Grid>
 </Window>

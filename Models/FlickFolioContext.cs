@@ -15,23 +15,23 @@ public partial class FlickFolioContext : DbContext
 
     public virtual DbSet<Film> Films { get; set; }
 
-    public virtual DbSet<FilmGlumci> FilmGlumcis { get; set; }
+    public virtual DbSet<FilmGlumci> FilmGlumci { get; set; }
 
-    public virtual DbSet<FilmZanr> FilmZanrs { get; set; }
+    public virtual DbSet<FilmZanr> FilmZanrovi { get; set; }
 
-    public virtual DbSet<Glumac> Glumacs { get; set; }
+    public virtual DbSet<Glumac> Glumci { get; set; }
 
-    public virtual DbSet<Redatelj> Redateljs { get; set; }
+    public virtual DbSet<Redatelj> Redatelji { get; set; }
 
-    public virtual DbSet<Serija> Serijas { get; set; }
+    public virtual DbSet<Serija> Serije { get; set; }
 
-    public virtual DbSet<SerijaGlumac> SerijaGlumacs { get; set; }
+    public virtual DbSet<SerijaGlumac> SerijaGlumci { get; set; }
 
-    public virtual DbSet<SerijaZanr> SerijaZanrs { get; set; }
+    public virtual DbSet<SerijaZanr> SerijaZanrovi { get; set; }
 
-    public virtual DbSet<Sezona> Sezonas { get; set; }
+    public virtual DbSet<Sezona> Sezone { get; set; }
 
-    public virtual DbSet<Zanr> Zanrs { get; set; }
+    public virtual DbSet<Zanr> Zanrovi { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlite("Data Source=.\\Database\\flickFolio.db");
@@ -72,7 +72,7 @@ public partial class FlickFolioContext : DbContext
                 .HasForeignKey<FilmZanr>(d => d.Id)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
-            entity.HasOne(d => d.Zanr).WithMany(p => p.FilmZanrs)
+            entity.HasOne(d => d.Zanr).WithMany(p => p.FilmZanrovi)
                 .HasForeignKey(d => d.ZanrId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
         });
@@ -121,7 +121,7 @@ public partial class FlickFolioContext : DbContext
                 .HasForeignKey<SerijaZanr>(d => d.Id)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
-            entity.HasOne(d => d.Zanr).WithMany(p => p.SerijaZanrs)
+            entity.HasOne(d => d.Zanr).WithMany(p => p.SerijaZanrovi)
                 .HasForeignKey(d => d.ZanrId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
         });
@@ -139,7 +139,7 @@ public partial class FlickFolioContext : DbContext
         {
             entity.ToTable("Zanr");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.Id).ValueGeneratedOnAdd();
         });
 
         OnModelCreatingPartial(modelBuilder);
