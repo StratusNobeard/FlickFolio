@@ -1,0 +1,221 @@
+﻿<Window x:Class="FlickFolio.Windows.WinViewMovies"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FlickFolio.Windows"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        Background="Transparent"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        AllowsTransparency="True"
+        ResizeMode="NoResize"
+        Height="600" Width="920"
+        Title="ViewMovies">
+    <Border x:Name="winMain" CornerRadius="40">
+        <Border.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <LinearGradientBrush.RelativeTransform>
+                    <TransformGroup>
+                        <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                        <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                        <RotateTransform Angle="46" CenterX="0.5" CenterY="0.5"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </LinearGradientBrush.RelativeTransform>
+                <GradientStop Color="#FF0E273C"/>
+                <GradientStop Color="#FF081825" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.Background>
+        <Grid x:Name="grd" Margin="10,0,-10,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Border x:Name="brdNavbar" Grid.Row="0" Grid.ColumnSpan="2"
+                CornerRadius="40,40,0,0" BorderBrush="Black" Margin="-10,0,10,0">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <LinearGradientBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                                <RotateTransform Angle="93" CenterX="0.5" CenterY="0.5"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop Color="#FFF76C5E"/>
+                        <GradientStop Color="#FF4A306D" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <TextBlock x:Name="lblTitle" Text="FlickFolio" FontSize="22" Foreground="White" Margin="84,20,721,13" FontFamily="../Fonts/Poppins/#Poppins" RenderTransformOrigin="0.388,0.512"/>
+            </Border>
+            <StackPanel Grid.Row="1">
+                <Rectangle Height="15"/>
+                <Button x:Name="btnLinkHome" Content="🏠 Početna"
+                    Foreground="White"
+                    FontSize="16"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Height="61" FontFamily="../Fonts/Poppins/#Poppins" Click="btnLinkHome_Click"
+                        />
+                <Button x:Name="btnLinkMovies" Content="🎬 Filmovi"
+                    Foreground="White"
+                    FontSize="16"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Height="61" FontFamily="../Fonts/Poppins/#Poppins" Click="btnLinkMovies_Click"
+                        />
+                <Button x:Name="btnLinkSeries" Content="🎞 Serije"
+                    Foreground="White"
+                    FontSize="16"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Height="63" FontFamily="Trebuchet MS"
+                        />
+                <Button x:Name="btnLinkGenres" Content="🖌 Žanrovi"
+                    Foreground="White"
+                    FontSize="16"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Height="61" FontFamily="../Fonts/Poppins/#Poppins"
+                        />
+                <Button x:Name="btnLinkActors" Content="👨‍👦 Glumci"
+                    Foreground="White"
+                    FontSize="16"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Height="57" FontFamily="../Fonts/Poppins/#Poppins"
+                        />
+                <Button x:Name="btnLinkDirectors" Content="🎥 Redatelji"
+                    Foreground="White"
+                    FontSize="16"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Height="62" FontFamily="../Fonts/Poppins/#Poppins"
+                        />
+            </StackPanel>
+            <Image x:Name="pbLogo" HorizontalAlignment="Left" Height="35" Margin="26,23,0,0" VerticalAlignment="Top" Width="35" Source="/Images/logo.png"/>
+            <Button x:Name="btnLinkEditLibrary"
+                Content="✎"
+                Foreground="White"
+                FontSize="35"
+                Background="Transparent"
+                BorderBrush="Transparent"
+                Click="btnEdit_Click"
+
+                Margin="578,10,91,13" RenderTransformOrigin="1.222,0.525" FontFamily="../Fonts/Poppins/#Poppins" Grid.Column="1"
+                        />
+            <Button Content="⤬"
+                x:Name="btnClose"
+                Foreground="White"
+                FontSize="60"
+                FontFamily="../Fonts/Poppins/#Poppins"
+                Background="Transparent"
+                BorderBrush="Transparent"
+                Click="btnClose_Click"
+                Margin="649,-12,22,17" Grid.Column="1" RenderTransformOrigin="1.222,0.525"
+                        />
+
+            <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled" Grid.Column="1" Margin="28,56,46,19" Grid.Row="1">
+                <StackPanel Orientation="Horizontal">
+                    <Border x:Name="brdViewComponent1" CornerRadius="30" Background="#FF463543" Margin="0,0,20,20" Width="200" Height="411">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="60"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition Height="50"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Label x:Name="lblViewComponentTitle1" HorizontalAlignment="Center" Content="Film1" FontSize="17" Foreground="White" FontFamily="../Fonts/Poppins/#Poppins" Margin="0,16,0,0" Height="34" VerticalAlignment="Top" Grid.Row="0" FontWeight="Bold"/>
+                            <TextBlock x:Name="lblViewComponentText1" Margin="17,0,17,1" TextWrapping="WrapWithOverflow" Text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing." Grid.Row="1" FontFamily="../Fonts/Poppins/#Poppins" Foreground="White" FontSize="11px"></TextBlock>
+                            <Button x:Name="btnEditItem1" Grid.Row="2" Background="Transparent" BorderBrush="Transparent"  Content="✎" Foreground="#F5DD90" Margin="19,0,100,0" FontFamily="../Fonts/Poppins/#Poppins" FontSize="25" RenderTransformOrigin="0.506,0.43"></Button>
+                            <Button x:Name="btnDeleteItem1" Grid.Row="2" Background="Transparent" BorderBrush="Transparent"  Content="🗑" Foreground="#F76C5E" Margin="100,0,23,0" FontFamily="../Fonts/Poppins/#Poppins" FontSize="18"></Button>
+                        </Grid>
+                    </Border>
+
+                    <Border x:Name="brdViewComponent2" CornerRadius="30" Background="#FF5F4949" Margin="0,0,20,20" Width="200" Height="406">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="60"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition Height="50"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Label x:Name="lblViewComponentTitle2" HorizontalAlignment="Center" Content="Film2" FontSize="17" Foreground="White" FontFamily="../Fonts/Poppins/#Poppins" Margin="0,16,0,0" Height="34" VerticalAlignment="Top" Grid.Row="0" FontWeight="Bold"/>
+                            <TextBlock x:Name="lblViewComponentText2" Margin="17,0,17,44" TextWrapping="WrapWithOverflow" Text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing." Grid.Row="1" FontFamily="../Fonts/Poppins/#Poppins" Foreground="White" FontSize="11px" Grid.RowSpan="2"></TextBlock>
+                            <Button x:Name="btnEditItem2" Grid.Row="2" Background="Transparent" BorderBrush="Transparent"  Content="✎" Foreground="#F5DD90" Margin="19,0,100,0" FontFamily="../Fonts/Poppins/#Poppins" FontSize="25" RenderTransformOrigin="0.506,0.43"></Button>
+                            <Button x:Name="btnDeleteItem2" Grid.Row="2" Background="Transparent" BorderBrush="Transparent"  Content="🗑" Foreground="#F76C5E" Margin="100,0,23,0" FontFamily="../Fonts/Poppins/#Poppins" FontSize="18"></Button>
+                        </Grid>
+                    </Border>
+
+                    <Border x:Name="brdViewComponent3" CornerRadius="30" Background="#FF3F4352" Margin="0,0,20,20" Width="200" Height="405">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="60"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition Height="50"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Label x:Name="lblViewComponentTitle3" HorizontalAlignment="Center" Content="Film3" FontSize="17" Foreground="White" FontFamily="../Fonts/Poppins/#Poppins" Margin="0,16,0,0" Height="34" VerticalAlignment="Top" Grid.Row="0" FontWeight="Bold"/>
+                            <TextBlock x:Name="lblViewComponentText3" Margin="17,0,17,47" TextWrapping="WrapWithOverflow" Text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing." Grid.Row="1" FontFamily="../Fonts/Poppins/#Poppins" Foreground="White" FontSize="11px" Grid.RowSpan="2"></TextBlock>
+                            <Button x:Name="btnEditItem3" Grid.Row="2" Background="Transparent" BorderBrush="Transparent"  Content="✎" Foreground="#F5DD90" Margin="19,0,100,0" FontFamily="../Fonts/Poppins/#Poppins" FontSize="25" RenderTransformOrigin="0.506,0.43"></Button>
+                            <Button x:Name="btnDeleteItem3" Grid.Row="2" Background="Transparent" BorderBrush="Transparent"  Content="🗑" Foreground="#F76C5E" Margin="100,0,23,0" FontFamily="../Fonts/Poppins/#Poppins" FontSize="18"></Button>
+                        </Grid>
+                    </Border>
+
+                    <Border x:Name="brdViewComponent4" CornerRadius="30" Background="#FF463543" Margin="0,0,20,20" Width="200" Height="419">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="60"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition Height="50"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Label x:Name="lblViewComponentTitle4" HorizontalAlignment="Center" Content="Film4" FontSize="17" Foreground="White" FontFamily="../Fonts/Poppins/#Poppins" Margin="0,16,0,0" Height="34" VerticalAlignment="Top" Grid.Row="0" FontWeight="Bold"/>
+                            <TextBlock x:Name="lblViewComponentText4" Margin="17,0,17,9" TextWrapping="WrapWithOverflow" Text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing." Grid.Row="1" FontFamily="../Fonts/Poppins/#Poppins" Foreground="White" FontSize="11px"></TextBlock>
+                            <Button x:Name="btnEditItem4" Grid.Row="2" Background="Transparent" BorderBrush="Transparent"  Content="✎" Foreground="#F5DD90" Margin="19,0,100,0" FontFamily="../Fonts/Poppins/#Poppins" FontSize="25" RenderTransformOrigin="0.506,0.43"></Button>
+                            <Button x:Name="btnDeleteItem4" Grid.Row="2" Background="Transparent" BorderBrush="Transparent"  Content="🗑" Foreground="#F76C5E" Margin="100,0,23,0" FontFamily="../Fonts/Poppins/#Poppins" FontSize="18"></Button>
+                        </Grid>
+                    </Border>
+
+                    <Border x:Name="brdViewComponent5" CornerRadius="30" Background="#FF5F4949" Margin="0,0,20,20" Width="200" Height="419">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="60"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition Height="50"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Label x:Name="lblViewComponentTitle5" HorizontalAlignment="Center" Content="Film5" FontSize="17" Foreground="White" FontFamily="../Fonts/Poppins/#Poppins" Margin="0,16,0,0" Height="34" VerticalAlignment="Top" Grid.Row="0" FontWeight="Bold"/>
+                            <TextBlock x:Name="lblViewComponentText5" Margin="17,0,17,9" TextWrapping="WrapWithOverflow" Text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing." Grid.Row="1" FontFamily="../Fonts/Poppins/#Poppins" Foreground="White" FontSize="11px"></TextBlock>
+                            <Button x:Name="btnEditItem5" Grid.Row="2" Background="Transparent" BorderBrush="Transparent"  Content="✎" Foreground="#F5DD90" Margin="19,0,100,0" FontFamily="../Fonts/Poppins/#Poppins" FontSize="25" RenderTransformOrigin="0.506,0.43"></Button>
+                            <Button x:Name="btnDeleteItem5" Grid.Row="2" Background="Transparent" BorderBrush="Transparent"  Content="🗑" Foreground="#F76C5E" Margin="100,0,23,0" FontFamily="../Fonts/Poppins/#Poppins" FontSize="18"></Button>
+                        </Grid>
+                    </Border>
+
+                    <Border x:Name="brdViewComponent6" CornerRadius="30" Background="#FF3F4352" Margin="0,0,20,20" Width="200" Height="419">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="60"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition Height="50"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Label x:Name="lblViewComponentTitle6" HorizontalAlignment="Center" Content="Film6" FontSize="17" Foreground="White" FontFamily="../Fonts/Poppins/#Poppins" Margin="0,16,0,0" Height="34" VerticalAlignment="Top" Grid.Row="0" FontWeight="Bold"/>
+                            <TextBlock x:Name="lblViewComponentText6" Margin="17,0,17,9" TextWrapping="WrapWithOverflow" Text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing." Grid.Row="1" FontFamily="../Fonts/Poppins/#Poppins" Foreground="White" FontSize="11px"></TextBlock>
+                            <Button x:Name="btnEditItem6" Grid.Row="2" Background="Transparent" BorderBrush="Transparent"  Content="✎" Foreground="#F5DD90" Margin="19,0,100,0" FontFamily="../Fonts/Poppins/#Poppins" FontSize="25" RenderTransformOrigin="0.506,0.43"></Button>
+                            <Button x:Name="btnDeleteItem6" Grid.Row="2" Background="Transparent" BorderBrush="Transparent"  Content="🗑" Foreground="#F76C5E" Margin="100,0,23,0" FontFamily="../Fonts/Poppins/#Poppins" FontSize="18"></Button>
+                        </Grid>
+                    </Border>
+                </StackPanel>
+            </ScrollViewer>
+            <TextBlock x:Name="lblSubTitleViewMovies" FontSize="17" Foreground="White" Margin="28,19,428,484" FontFamily="../Fonts/Poppins/#Poppins" RenderTransformOrigin="0.388,0.512" Text="Prikaz svih unesenih filmova:" Opacity="0.8" Grid.Column="1" Grid.Row="1" FontStyle="Italic"/>
+        </Grid>
+    </Border>
+</Window>

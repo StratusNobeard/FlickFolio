@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="flickFolio.db" />
+    <None Remove="Fonts\Poppins\Poppins-Bold.ttf" />
+    <None Remove="Fonts\Poppins\Poppins-Italic.ttf" />
+    <None Remove="Fonts\Poppins\Poppins-Regular.ttf" />
+    <None Remove="Windows\back.jpg" />
+    <None Remove="Windows\back2.png" />
+    <None Remove="Windows\Discarded idea-rafiki.png" />
+    <None Remove="Windows\Discarded idea-rafiki.svg" />
+    <None Remove="Windows\logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="flickFolio.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\" />
+    <Folder Include="Pages\" />
+    <Folder Include="UserControls\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="System.Data.SQLite" Version="1.0.118" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Fonts\Poppins\Poppins-Bold.ttf" />
+    <Resource Include="Fonts\Poppins\Poppins-Italic.ttf" />
+    <Resource Include="Fonts\Poppins\Poppins-Regular.ttf" />
+    <Resource Include="Images\Discarded idea-rafiki.png" />
+    <Resource Include="Images\logo.png" />
+  </ItemGroup>
+
+</Project>
