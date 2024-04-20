@@ -10,6 +10,7 @@
     <None Remove="Fonts\Poppins\Poppins-Bold.ttf" />
     <None Remove="Fonts\Poppins\Poppins-Italic.ttf" />
     <None Remove="Fonts\Poppins\Poppins-Regular.ttf" />
+    <None Remove="Images\logo.ico" />
     <None Remove="Windows\back.jpg" />
     <None Remove="Windows\back2.png" />
     <None Remove="Windows\Discarded idea-rafiki.png" />
@@ -22,12 +23,16 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="System.Data.SQLite" Version="1.0.118" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Fonts\Poppins\Poppins-Bold.ttf" />
     <Resource Include="Fonts\Poppins\Poppins-Italic.ttf" />
     <Resource Include="Fonts\Poppins\Poppins-Regular.ttf" />
     <Resource Include="Images\Discarded idea-rafiki.png" />
+    <Resource Include="Images\logo.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\logo.png" />
   </ItemGroup>
   <ItemGroup>
