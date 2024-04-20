@@ -35,9 +35,8 @@ namespace FlickFolio.Dialogs
             Model ??= new Film();
             
             Model.Naziv = txtName.Text;
-            Model.Trajanje = txtLenght.Text;
-            Model.Godina = txtYear.Text;
-            Model.Trajanje = txtLenght.Text;
+            Model.Trajanje = int.Parse(txtLenght.Text);
+            Model.Godina = int.Parse(txtYear.Text);
 
             var selectedDirector = cmbDirectors.SelectedItem as Redatelj;
             Model.RedateljId = selectedDirector.Id;
@@ -83,11 +82,33 @@ namespace FlickFolio.Dialogs
             {
                 txtId.Text = Model.Id.ToString();
                 txtName.Text = Model.Naziv;
-                txtLenght.Text = Model.Trajanje;
-                txtYear.Text = Model.Godina;
-                //treba još dodati
+                txtLenght.Text = Model.Trajanje.ToString();
+                txtYear.Text = Model.Godina.ToString();
+                //cmbDirectors.SelectedValue = $"{Model.Redatelj.Ime} {Model.Redatelj.Prezime}";
             }
         }
+
+
+
+        private void CheckIfNumber(object sender, TextCompositionEventArgs e)
+        {
+            if (!char.IsDigit(e.Text, e.Text.Length - 1))
+            {
+                e.Handled = true;
+            }
+            else
+            {
+                TextBox textBox = (TextBox)sender;
+                string newText = textBox.Text.Substring(0, textBox.SelectionStart) + e.Text +
+                                  textBox.Text.Substring(textBox.SelectionStart + textBox.SelectionLength);
+
+                if (string.IsNullOrWhiteSpace(newText) || newText == "0" || !int.TryParse(newText, out int number))
+                {
+                    e.Handled = true;
+                }
+            }
+        }
+
 
         private void cmbDirectors_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

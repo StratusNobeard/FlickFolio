@@ -14,10 +14,10 @@
         <Button FontFamily="../Fonts/Poppins/#Poppins"  x:Name="btnSave" Content="📁 Spremi" IsDefault="True" HorizontalAlignment="Left" Margin="22,586,0,0" VerticalAlignment="Top" Height="28" Width="88" Click="btnSave_Click" BorderBrush="{x:Null}" Background="#FF90B0EF"/>
         <Button FontFamily="../Fonts/Poppins/#Poppins" x:Name="btnCancel" Content="✖ Odustani" HorizontalAlignment="Left" Margin="267,586,0,0" VerticalAlignment="Top" Height="28" Width="88" Click="btnCancel_Click" IsCancel="True" BorderBrush="{x:Null}" Background="#FFD8A6EC"/>
         <Label FontFamily="../Fonts/Poppins/#Poppins" x:Name="lblLenght" Content="Trajanje (min)" HorizontalAlignment="Left" Margin="16,109,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.273,-0.2" FontWeight="Bold"/>
-        <TextBox FontFamily="../Fonts/Poppins/#Poppins" x:Name="txtLenght" HorizontalAlignment="Left" Margin="135,113,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="220" TextChanged="txtLenght_TextChanged" />
+        <TextBox PreviewTextInput="CheckIfNumber" FontFamily="../Fonts/Poppins/#Poppins" x:Name="txtLenght" HorizontalAlignment="Left" Margin="135,113,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="220" TextChanged="txtLenght_TextChanged" />
         <Label x:Name="lblMovieDetailsTitle" FontFamily="../Fonts/Poppins/#Poppins" Content="Dodavanje / ažuriranje filmova" FontSize="15" HorizontalAlignment="Left" Margin="14,10,0,0" VerticalAlignment="Top"/>
         <Label FontFamily="../Fonts/Poppins/#Poppins" x:Name="lblYear" Content="Godina" HorizontalAlignment="Left" Margin="16,142,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.273,-0.2" FontWeight="Bold"/>
-        <TextBox FontFamily="../Fonts/Poppins/#Poppins" x:Name="txtYear" HorizontalAlignment="Left" Margin="135,146,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="220" TextChanged="txtYear_TextChanged" />
+        <TextBox PreviewTextInput="CheckIfNumber" FontFamily="../Fonts/Poppins/#Poppins" x:Name="txtYear" HorizontalAlignment="Left" Margin="135,146,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="220" TextChanged="txtYear_TextChanged" />
         <Label FontFamily="../Fonts/Poppins/#Poppins" x:Name="lblDirector" Content="Redatelj" HorizontalAlignment="Left" Margin="16,175,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.273,-0.2" FontWeight="Bold"/>
         <ComboBox Name="cmbDirectors" HorizontalAlignment="Left" Margin="21,203,0,0" VerticalAlignment="Top" Width="334" BorderBrush="{x:Null}" Height="35" SelectionChanged="cmbDirectors_SelectionChanged">
             <ComboBox.Background>
@@ -37,7 +37,7 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
         <Label FontFamily="../Fonts/Poppins/#Poppins" x:Name="lblActors" Content="Glumci" HorizontalAlignment="Left" Margin="19,243,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.273,-0.2" FontWeight="Bold"/>
-        <ListBox x:Name="lbActors" Margin="22,271,18,241" BorderBrush="#FFADADAD" AllowDrop="True" SelectionMode="Multiple" SelectionChanged="lbActors_SelectionChanged">
+        <ListBox x:Name="lbActors" Margin="22,271,18,224" BorderBrush="#FFADADAD" AllowDrop="True" SelectionMode="Multiple" SelectionChanged="lbActors_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -47,8 +47,8 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Label FontFamily="../Fonts/Poppins/#Poppins" x:Name="lblGenres" Content="Žanrovi" HorizontalAlignment="Left" Margin="22,406,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.273,-0.2" FontWeight="Bold"/>
-        <ListBox x:Name="lbGenres" Margin="24,439,18,76" BorderBrush="#FFADADAD" AllowDrop="True" SelectionMode="Multiple" SelectionChanged="lbGenres_SelectionChanged">
+        <Label FontFamily="../Fonts/Poppins/#Poppins" x:Name="lblGenres" Content="Žanrovi" HorizontalAlignment="Left" Margin="21,413,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.273,-0.2" FontWeight="Bold"/>
+        <ListBox x:Name="lbGenres" Margin="24,439,18,57" BorderBrush="#FFADADAD" AllowDrop="True" SelectionMode="Multiple" SelectionChanged="lbGenres_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">

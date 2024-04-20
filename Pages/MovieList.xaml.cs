@@ -38,6 +38,7 @@ namespace FlickFolio.Pages
 
         private void RefreshGrid()
         {
+            /*
             using var db = new FlickFolioContext();
 
             var x = db.Filmovi
@@ -49,11 +50,14 @@ namespace FlickFolio.Pages
                     _.Trajanje,
                     _.Godina,
                     RedateljImePrezime = $"{_.Redatelj.Ime} {_.Redatelj.Prezime}"
-                })
-                .AsNoTracking();
+                });
             
             lbMovie.ItemsSource = x.ToList();
-    }
+            */
+
+            using var db = new FlickFolioContext();
+            lbMovie.ItemsSource = db.Filmovi.ToList();
+        }
 
         private void btnNew_Click(object sender, RoutedEventArgs e)
         {
@@ -95,7 +99,7 @@ namespace FlickFolio.Pages
                 using var db = new FlickFolioContext();
 
                 var item = lbMovie.SelectedItem as Film;
-
+               
                 db.Filmovi.Remove(item);
                 db.SaveChanges();
 

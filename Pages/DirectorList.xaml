@@ -33,15 +33,21 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock x:Name="txtColumnName" Grid.Column="2" Text="Ime" FontSize="13" Foreground="White" Margin="0,0,23,0" FontWeight="Bold"/>
-                <TextBlock x:Name="txtColumnSurname" Grid.Column="2" Text="Prezime" FontSize="13" Foreground="White" Margin="46,0,-46,0" FontWeight="Bold"/>
+                <TextBlock x:Name="txtColumnSurname" Grid.Column="2" Text="Prezime" FontSize="13" Foreground="White" Margin="201,0,-201,0" FontWeight="Bold"/>
             </Grid>
         </Grid>
         <ListBox x:Name="lbDirector" Margin="16,93,16,19" Background="#FF0E273C" BorderBrush="{x:Null}" SelectionChanged="lbDirector_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <Label FontSize="13" Foreground="White" Content="{Binding Ime}"/>
-                        <Label FontSize="13" Foreground="White" Content="{Binding Prezime}"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200"></ColumnDefinition>
+                                <ColumnDefinition Width="200"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" FontSize="13" Foreground="White" Content="{Binding Ime}"/>
+                            <Label Grid.Column="1" FontSize="13" Foreground="White" Content="{Binding Prezime}"/>
+                        </Grid>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>

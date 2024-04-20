@@ -9,11 +9,11 @@ public partial class Serija
 
     public string Naziv { get; set; } = null!;
 
-    public string PocetnaGodina { get; set; } = null!;
+    public int PocetnaGodina { get; set; }
 
-    public string ZavrsnaGodina { get; set; } = null!;
+    public int ZavrsnaGodina { get; set; }
 
-    public string BrojSezona { get; set; } = null!;
+    public int BrojSezona { get; set; }
 
     public int RedateljId { get; set; }
 
