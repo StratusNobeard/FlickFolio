@@ -9,9 +9,9 @@ public partial class Film
 
     public string Naziv { get; set; } = null!;
 
-    public int Trajanje { get; set; }
+    public string Trajanje { get; set; } = null!;
 
-    public int Godina { get; set; }
+    public string Godina { get; set; } = null!;
 
     public int RedateljId { get; set; }
 

@@ -11,7 +11,7 @@ public partial class Redatelj
 
     public string Prezime { get; set; } = null!;
 
-    public virtual ICollection<Film> Films { get; set; } = new List<Film>();
+    public virtual ICollection<Film> Filmovi { get; set; } = new List<Film>();
 
-    public virtual ICollection<Serija> Serijas { get; set; } = new List<Serija>();
+    public virtual ICollection<Serija> Serije { get; set; } = new List<Serija>();
 }

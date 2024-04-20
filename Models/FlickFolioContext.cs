@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
+using System.IO;
 
 namespace FlickFolio.Models;
 
@@ -13,7 +15,7 @@ public partial class FlickFolioContext : DbContext
     {
     }
 
-    public virtual DbSet<Film> Films { get; set; }
+    public virtual DbSet<Film> Filmovi { get; set; }
 
     public virtual DbSet<FilmGlumci> FilmGlumci { get; set; }
 
@@ -33,8 +35,18 @@ public partial class FlickFolioContext : DbContext
 
     public virtual DbSet<Zanr> Zanrovi { get; set; }
 
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlite("Data Source=.\\Database\\flickFolio.db");
+        => optionsBuilder.UseSqlite($"Data Source={DatabasePath()}");
+
+    public string DatabasePath()
+    {
+        var enviroment = Environment.CurrentDirectory;
+        string projectDirectory = Directory.GetParent(enviroment).Parent.FullName.Replace("\\bin", ""); ;
+        string relativePath = "Database\\flickFolio.db";
+        string absolutePath = Path.Combine(projectDirectory, relativePath);
+        return absolutePath;
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -42,7 +54,7 @@ public partial class FlickFolioContext : DbContext
         {
             entity.ToTable("Film");
 
-            entity.HasOne(d => d.Redatelj).WithMany(p => p.Films)
+            entity.HasOne(d => d.Redatelj).WithMany(p => p.Filmovi)
                 .HasForeignKey(d => d.RedateljId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
         });
@@ -91,7 +103,7 @@ public partial class FlickFolioContext : DbContext
         {
             entity.ToTable("Serija");
 
-            entity.HasOne(d => d.Redatelj).WithMany(p => p.Serijas)
+            entity.HasOne(d => d.Redatelj).WithMany(p => p.Serije)
                 .HasForeignKey(d => d.RedateljId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
         });
