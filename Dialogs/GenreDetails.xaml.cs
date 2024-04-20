@@ -1,5 +1,6 @@
 ﻿using FlickFolio.Models;
 using System.Windows;
+using System.Windows.Input;
 
 namespace FlickFolio.Dialogs;
 
@@ -11,6 +12,8 @@ public partial class GenreDetails : Window
     public GenreDetails()
     {
         InitializeComponent();
+
+        CheckEmpty();
     }
 
     public Zanr? Model { get; set; }
@@ -50,5 +53,20 @@ public partial class GenreDetails : Window
             txtId.Text = Model.Id.ToString();
             txtName.Text = Model.Naziv;
         }
+    }
+
+    private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+    {
+        DragMove();
+    }
+
+    private void txtName_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+    {
+        CheckEmpty();
+    }
+
+    private void CheckEmpty()
+    {
+        btnSave.IsEnabled = !string.IsNullOrEmpty(txtName.Text);
     }
 }

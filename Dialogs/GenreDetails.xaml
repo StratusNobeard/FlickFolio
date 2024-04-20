@@ -4,15 +4,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FlickFolio.Dialogs"
-        mc:Ignorable="d"
-        Title="Detalji žanra" Height="196" Width="311" Loaded="Window_Loaded">
+        mc:Ignorable="d" WindowStyle="None" WindowStartupLocation="CenterScreen"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        Title="Unos / Ažuriranje žanrova" Height="186" Width="280" Loaded="Window_Loaded">
     <Grid>
-        <Label Content="ID" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.273,-0.2"/>
-        <TextBox Name="txtId" HorizontalAlignment="Left" Margin="110,14,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" IsReadOnly="True" />
-        <Label Content="Naziv" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.273,-0.2"/>
-        <TextBox x:Name="txtName" HorizontalAlignment="Left" Margin="110,45,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" />
-        <Button x:Name="btnSave" Content="Spremi" IsDefault="True" HorizontalAlignment="Left" Margin="10,82,0,0" VerticalAlignment="Top" Height="29" Width="79" Click="btnSave_Click"/>
-        <Button x:Name="btnCancel" Content="Odustani" HorizontalAlignment="Left" Margin="151,82,0,0" VerticalAlignment="Top" Height="29" Width="79" Click="btnCancel_Click" IsCancel="True"/>
+        <Label FontFamily="../Fonts/Poppins/#Poppins" Name="lblId" Content="ID" HorizontalAlignment="Left" Margin="21,51,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.273,-0.2" FontWeight="Bold"/>
+        <TextBox FontFamily="../Fonts/Poppins/#Poppins"  Name="txtId" HorizontalAlignment="Left" Margin="121,55,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" IsReadOnly="True" Background="#FFECECEC" />
+        <Label  FontFamily="../Fonts/Poppins/#Poppins" Name="lblName" Content="Naziv" HorizontalAlignment="Left" Margin="21,82,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.273,-0.2" FontWeight="Bold"/>
+        <TextBox FontFamily="../Fonts/Poppins/#Poppins" x:Name="txtName" HorizontalAlignment="Left" Margin="121,86,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="txtName_TextChanged" />
+        <Button FontFamily="../Fonts/Poppins/#Poppins" x:Name="btnSave" Content="📁 Spremi" IsDefault="True" HorizontalAlignment="Left" Margin="21,123,0,0" VerticalAlignment="Top" Height="29" Width="86" Click="btnSave_Click" BorderBrush="{x:Null}" Background="#FF90B0EF"/>
+        <Button FontFamily="../Fonts/Poppins/#Poppins" x:Name="btnCancel" Content="✖ Odustani" HorizontalAlignment="Left" Margin="156,123,0,0" VerticalAlignment="Top" Height="29" Width="85" Click="btnCancel_Click" IsCancel="True" BorderBrush="{x:Null}" Background="#FFD8A6EC"/>
+        <Label Name="lblGenreDetailsTitle" FontFamily="../Fonts/Poppins/#Poppins" Content="Dodavanje / ažuriranje žanrova" FontSize="15" HorizontalAlignment="Left" Margin="14,10,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

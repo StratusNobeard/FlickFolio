@@ -1,24 +1,43 @@
 ﻿using FlickFolio.Dialogs;
 using FlickFolio.Models;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace FlickFolio.Pages
 {
-
-    public partial class GenreList : Page
+    /// <summary>
+    /// Interaction logic for ActorList.xaml
+    /// </summary>
+    public partial class ActorList : Page
     {
-        public GenreList()
+        public ActorList()
         {
             InitializeComponent();
 
             RefreshGrid();
         }
 
+        private void RefreshGrid()
+        {
+            using var db = new FlickFolioContext();
+            lbActor.ItemsSource = db.Glumci.ToList();
+        }
+
         private void btnNew_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new GenreDetails
+            var dialog = new ActorDetails
             {
                 Model = null,
                 Owner = Parent as Window
@@ -31,26 +50,14 @@ namespace FlickFolio.Pages
             }
         }
 
-        private void RefreshGrid()
-        {
-            using var db = new FlickFolioContext();
-            lbGenre.ItemsSource = db.Zanrovi.ToList();
-        }
-
-        private void lbGenre_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            btnEdit.IsEnabled = lbGenre.SelectedItem != null;
-            btnDelete.IsEnabled = lbGenre.SelectedItem != null;
-        }
-
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new GenreDetails
+            var dialog = new ActorDetails
             {
                 Owner = Parent as Window
             };
 
-            dialog.Model = lbGenre.SelectedItem as Zanr;
+            dialog.Model = lbActor.SelectedItem as Glumac;
 
             var result = dialog.ShowDialog();
             if (result.Value)
@@ -67,13 +74,19 @@ namespace FlickFolio.Pages
             {
                 using var db = new FlickFolioContext();
 
-                var item = lbGenre.SelectedItem as Zanr;
+                var item = lbActor.SelectedItem as Glumac;
 
-                db.Zanrovi.Remove(item);
+                db.Glumci.Remove(item);
                 db.SaveChanges();
 
                 RefreshGrid();
             }
+        }
+
+        private void lbActor_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            btnEdit.IsEnabled = lbActor.SelectedItem != null;
+            btnDelete.IsEnabled = lbActor.SelectedItem != null;
         }
     }
 }
