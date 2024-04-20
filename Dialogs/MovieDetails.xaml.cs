@@ -1,4 +1,5 @@
 ﻿using FlickFolio.Models;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -39,8 +40,21 @@ namespace FlickFolio.Dialogs
             Model.Trajanje = txtLenght.Text;
 
             var selectedDirector = cmbDirectors.SelectedItem as Redatelj;
-
             Model.RedateljId = selectedDirector.Id;
+
+            var selectedActors = lbActors.SelectedItems.Cast<Glumac>().ToList();
+
+            foreach (var actor in selectedActors)
+            {
+                Model.FilmGlumac.Add(new FilmGlumac { FilmId = Model.Id, GlumacId = actor.Id });
+            }
+
+            var selectedGenres = lbGenres.SelectedItems.Cast<Zanr>().ToList();
+
+            foreach (var genre in selectedGenres)
+            {
+                Model.FilmZanr.Add(new FilmZanr { FilmId = Model.Id, ZanrId = genre.Id });
+            }
 
             if (Model.Id == 0)
             {

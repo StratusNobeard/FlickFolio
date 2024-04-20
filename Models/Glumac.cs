@@ -11,7 +11,7 @@ public partial class Glumac
 
     public string Prezime { get; set; } = null!;
 
-    public virtual ICollection<FilmGlumci> FilmGlumci { get; set; } = new List<FilmGlumci>();
+    public virtual ICollection<FilmGlumac> FilmGlumac { get; set; } = new List<FilmGlumac>();
 
-    public virtual ICollection<SerijaGlumac> SerijaGlumci { get; set; } = new List<SerijaGlumac>();
+    public virtual ICollection<SerijaGlumac> SerijaGlumac { get; set; } = new List<SerijaGlumac>();
 }

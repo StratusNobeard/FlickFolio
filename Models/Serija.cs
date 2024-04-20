@@ -19,9 +19,9 @@ public partial class Serija
 
     public virtual Redatelj Redatelj { get; set; } = null!;
 
-    public virtual ICollection<SerijaGlumac> SerijaGlumci { get; set; } = new List<SerijaGlumac>();
+    public virtual ICollection<SerijaGlumac> SerijaGlumac { get; set; } = new List<SerijaGlumac>();
 
-    public virtual ICollection<SerijaZanr> SerijaZanrovi { get; set; } = new List<SerijaZanr>();
+    public virtual ICollection<SerijaZanr> SerijaZanr { get; set; } = new List<SerijaZanr>();
 
     public virtual ICollection<Sezona> Sezone { get; set; } = new List<Sezona>();
 }

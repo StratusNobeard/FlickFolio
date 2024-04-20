@@ -9,7 +9,7 @@ public partial class Zanr
 
     public string Naziv { get; set; } = null!;
 
-    public virtual ICollection<FilmZanr> FilmZanrovi { get; set; } = new List<FilmZanr>();
+    public virtual ICollection<FilmZanr> FilmZanr { get; set; } = new List<FilmZanr>();
 
-    public virtual ICollection<SerijaZanr> SerijaZanrovi { get; set; } = new List<SerijaZanr>();
+    public virtual ICollection<SerijaZanr> SerijaZanr { get; set; } = new List<SerijaZanr>();
 }

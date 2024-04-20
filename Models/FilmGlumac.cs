@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace FlickFolio.Models;
 
-public partial class FilmGlumci
+public partial class FilmGlumac
 {
     public int Id { get; set; }
 
