@@ -7,9 +7,11 @@ public partial class SerijaZanr
 {
     public int Id { get; set; }
 
+    public int SerijaId { get; set; }
+
     public int ZanrId { get; set; }
 
-    public virtual Film IdNavigation { get; set; } = null!;
+    public virtual Serija Serija { get; set; } = null!;
 
     public virtual Zanr Zanr { get; set; } = null!;
 }

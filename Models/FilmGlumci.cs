@@ -7,9 +7,11 @@ public partial class FilmGlumci
 {
     public int Id { get; set; }
 
+    public int FilmId { get; set; }
+
     public int GlumacId { get; set; }
 
-    public virtual Glumac Glumac { get; set; } = null!;
+    public virtual Film Film { get; set; } = null!;
 
-    public virtual Film IdNavigation { get; set; } = null!;
+    public virtual Glumac Glumac { get; set; } = null!;
 }

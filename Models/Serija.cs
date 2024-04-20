@@ -9,15 +9,19 @@ public partial class Serija
 
     public string Naziv { get; set; } = null!;
 
-    public int PocetnaGodina { get; set; }
+    public string PocetnaGodina { get; set; } = null!;
 
-    public int ZavrsnaGodina { get; set; }
+    public string ZavrsnaGodina { get; set; } = null!;
 
-    public int BrojSezona { get; set; }
+    public string BrojSezona { get; set; } = null!;
 
     public int RedateljId { get; set; }
 
     public virtual Redatelj Redatelj { get; set; } = null!;
 
-    public virtual ICollection<Sezona> Sezonas { get; set; } = new List<Sezona>();
+    public virtual ICollection<SerijaGlumac> SerijaGlumci { get; set; } = new List<SerijaGlumac>();
+
+    public virtual ICollection<SerijaZanr> SerijaZanrovi { get; set; } = new List<SerijaZanr>();
+
+    public virtual ICollection<Sezona> Sezone { get; set; } = new List<Sezona>();
 }

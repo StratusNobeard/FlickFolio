@@ -15,13 +15,9 @@ public partial class Film
 
     public int RedateljId { get; set; }
 
-    public virtual FilmGlumci? FilmGlumci { get; set; }
+    public virtual ICollection<FilmGlumci> FilmGlumci { get; set; } = new List<FilmGlumci>();
 
-    public virtual FilmZanr? FilmZanr { get; set; }
+    public virtual ICollection<FilmZanr> FilmZanrovi { get; set; } = new List<FilmZanr>();
 
     public virtual Redatelj Redatelj { get; set; } = null!;
-
-    public virtual SerijaGlumac? SerijaGlumac { get; set; }
-
-    public virtual SerijaZanr? SerijaZanr { get; set; }
 }

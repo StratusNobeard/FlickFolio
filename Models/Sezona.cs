@@ -1,4 +1,7 @@
-﻿namespace FlickFolio.Models;
+﻿using System;
+using System.Collections.Generic;
+
+namespace FlickFolio.Models;
 
 public partial class Sezona
 {

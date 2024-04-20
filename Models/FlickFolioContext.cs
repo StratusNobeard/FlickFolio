@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using Microsoft.EntityFrameworkCore;
 
 namespace FlickFolio.Models;
 
@@ -35,7 +36,6 @@ public partial class FlickFolioContext : DbContext
 
     public virtual DbSet<Zanr> Zanrovi { get; set; }
 
-
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlite($"Data Source={DatabasePath()}");
 
@@ -63,14 +63,12 @@ public partial class FlickFolioContext : DbContext
         {
             entity.ToTable("FilmGlumci");
 
-            entity.Property(e => e.Id).ValueGeneratedOnAdd();
-
-            entity.HasOne(d => d.Glumac).WithMany(p => p.FilmGlumcis)
-                .HasForeignKey(d => d.GlumacId)
+            entity.HasOne(d => d.Film).WithMany(p => p.FilmGlumci)
+                .HasForeignKey(d => d.FilmId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
-            entity.HasOne(d => d.IdNavigation).WithOne(p => p.FilmGlumci)
-                .HasForeignKey<FilmGlumci>(d => d.Id)
+            entity.HasOne(d => d.Glumac).WithMany(p => p.FilmGlumci)
+                .HasForeignKey(d => d.GlumacId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
         });
 
@@ -78,10 +76,8 @@ public partial class FlickFolioContext : DbContext
         {
             entity.ToTable("FilmZanr");
 
-            entity.Property(e => e.Id).ValueGeneratedOnAdd();
-
-            entity.HasOne(d => d.IdNavigation).WithOne(p => p.FilmZanr)
-                .HasForeignKey<FilmZanr>(d => d.Id)
+            entity.HasOne(d => d.Film).WithMany(p => p.FilmZanrovi)
+                .HasForeignKey(d => d.FilmId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
             entity.HasOne(d => d.Zanr).WithMany(p => p.FilmZanrovi)
@@ -112,14 +108,12 @@ public partial class FlickFolioContext : DbContext
         {
             entity.ToTable("SerijaGlumac");
 
-            entity.Property(e => e.Id).ValueGeneratedOnAdd();
-
-            entity.HasOne(d => d.Glumac).WithMany(p => p.SerijaGlumacs)
+            entity.HasOne(d => d.Glumac).WithMany(p => p.SerijaGlumci)
                 .HasForeignKey(d => d.GlumacId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
-            entity.HasOne(d => d.IdNavigation).WithOne(p => p.SerijaGlumac)
-                .HasForeignKey<SerijaGlumac>(d => d.Id)
+            entity.HasOne(d => d.Serija).WithMany(p => p.SerijaGlumci)
+                .HasForeignKey(d => d.SerijaId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
         });
 
@@ -127,10 +121,8 @@ public partial class FlickFolioContext : DbContext
         {
             entity.ToTable("SerijaZanr");
 
-            entity.Property(e => e.Id).ValueGeneratedOnAdd();
-
-            entity.HasOne(d => d.IdNavigation).WithOne(p => p.SerijaZanr)
-                .HasForeignKey<SerijaZanr>(d => d.Id)
+            entity.HasOne(d => d.Serija).WithMany(p => p.SerijaZanrovi)
+                .HasForeignKey(d => d.SerijaId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
             entity.HasOne(d => d.Zanr).WithMany(p => p.SerijaZanrovi)
@@ -142,7 +134,7 @@ public partial class FlickFolioContext : DbContext
         {
             entity.ToTable("Sezona");
 
-            entity.HasOne(d => d.Serija).WithMany(p => p.Sezonas)
+            entity.HasOne(d => d.Serija).WithMany(p => p.Sezone)
                 .HasForeignKey(d => d.SerijaId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
         });
@@ -151,7 +143,7 @@ public partial class FlickFolioContext : DbContext
         {
             entity.ToTable("Zanr");
 
-            entity.Property(e => e.Id).ValueGeneratedOnAdd();
+            entity.Property(e => e.Id).ValueGeneratedNever();
         });
 
         OnModelCreatingPartial(modelBuilder);
