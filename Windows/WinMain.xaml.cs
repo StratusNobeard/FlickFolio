@@ -1,6 +1,7 @@
 ﻿using FlickFolio;
 using FlickFolio.Windows;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,31 +35,45 @@ namespace FlickFolio.Prozori
         }
 
 
-
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
 
-        private void btnLinkMovies_Click(object sender, RoutedEventArgs e)
-        {
-            WinViewMovies viewMovies = new WinViewMovies();
-            Close();
-            viewMovies.Show();
-        }
-
         private void btnLinkHome_Click(object sender, RoutedEventArgs e)
         {
-            WinMain main = new WinMain();
-            Close();
-            main.Show();
+            frMainFrame.Navigate(new Uri("./Pages/Home.xaml", UriKind.Relative));
+        }
+
+        private void btnLinkMovies_Click(object sender, RoutedEventArgs e)
+        {
+            frMainFrame.Navigate(new Uri("./Pages/MovieList.xaml", UriKind.Relative));
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            WinEdit edit = new WinEdit();
-            Close();
-            edit.Show();
+            
+        }
+
+        private void btnLinkSeries_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnLinkGenres_Click(object sender, RoutedEventArgs e)
+        {
+            frMainFrame.Navigate(new Uri("./Pages/GenreList.xaml", UriKind.Relative));
+        }
+
+        private void btnLinkActors_Click(object sender, RoutedEventArgs e)
+        {
+            frMainFrame.Navigate(new Uri("./Pages/ActorList.xaml", UriKind.Relative));
+        }
+
+        private void btnLinkDirectors_Click(object sender, RoutedEventArgs e)
+        {
+            frMainFrame.Navigate(new Uri("./Pages/DirectorList.xaml", UriKind.Relative));
+
         }
     }
 }

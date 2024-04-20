@@ -9,7 +9,7 @@
         Background="Transparent"
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
         AllowsTransparency="True"
-        ResizeMode="NoResize"
+        ResizeMode="NoResize" Icon="/Images/logo.ico"
         Title="Main" Height="600" Width="920">
     <Border x:Name="winMain" CornerRadius="40">
         <Border.Background>
@@ -52,7 +52,7 @@
                         <GradientStop Color="#FF4A306D" Offset="1"/>
                     </LinearGradientBrush>
                 </Border.Background>
-                <TextBlock x:Name="lblTitle" Text="FlickFolio" FontSize="22" Foreground="White" Margin="84,20,721,13" FontFamily="../Fonts/Poppins/#Poppins" RenderTransformOrigin="0.388,0.512"/>
+                <TextBlock x:Name="txtTitle" Text="FlickFolio" FontSize="22" Foreground="White" Margin="84,20,721,13" FontFamily="../Fonts/Poppins/#Poppins" RenderTransformOrigin="0.388,0.512"/>
             </Border>
             <StackPanel Grid.Row="1">
                 <Rectangle Height="15"></Rectangle>
@@ -75,41 +75,31 @@
                         FontSize="16"
                         Background="Transparent"
                         BorderBrush="Transparent"
-                        Height="63" FontFamily="Trebuchet MS"
+                        Height="63" FontFamily="Trebuchet MS" Click="btnLinkSeries_Click"
                         />
                 <Button x:Name="btnLinkGenres" Content="🖌 Žanrovi"
                        Foreground="White"
                         FontSize="16"
                         Background="Transparent"
                         BorderBrush="Transparent"
-                        Height="61" FontFamily="../Fonts/Poppins/#Poppins"
+                        Height="61" FontFamily="../Fonts/Poppins/#Poppins" Click="btnLinkGenres_Click"
                         />
                 <Button x:Name="btnLinkActors" Content="👨‍👦 Glumci"
                        Foreground="White"
                         FontSize="16"
                         Background="Transparent"
                         BorderBrush="Transparent"
-                        Height="57" FontFamily="../Fonts/Poppins/#Poppins"
+                        Height="57" FontFamily="../Fonts/Poppins/#Poppins" Click="btnLinkActors_Click"
                         />
                 <Button x:Name="btnLinkDirectors" Content="🎥 Redatelji"
                        Foreground="White"
                         FontSize="16"
                         Background="Transparent"
                         BorderBrush="Transparent"
-                        Height="62" FontFamily="../Fonts/Poppins/#Poppins"
+                        Height="62" FontFamily="../Fonts/Poppins/#Poppins" Click="btnLinkDirectors_Click"
                         />
             </StackPanel>
             <Image x:Name="pbLogo" HorizontalAlignment="Left" Height="35" Margin="26,23,0,0" VerticalAlignment="Top" Width="35" Source="/Images/logo.png"/>
-            <Button x:Name="btnLinkEditLibrary"
-                Content="✎"
-                Foreground="White"
-                FontSize="35"
-                Background="Transparent"
-                BorderBrush="Transparent"
-                Click="btnEdit_Click"
-
-    Margin="578,10,91,13" RenderTransformOrigin="1.222,0.525" FontFamily="../Fonts/Poppins/#Poppins" Grid.Column="1"
-                        />
             <Button Content="⤬"
                 x:Name="btnClose"
                 Foreground="White"
@@ -120,46 +110,10 @@
                 Click="btnClose_Click"
                 Margin="649,-12,22,17" Grid.Column="1" RenderTransformOrigin="1.222,0.525"
                         />
-            <Border x:Name="brdArticleMain" CornerRadius="30" BorderBrush="#FFAC5264" Grid.Column="1" Grid.Row="1" Margin="31,43,239,316" Background="#FFF5DD90">
-                <TextBlock x:Name="lblSubTitleAbout" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Dobrodošli natrag!" VerticalAlignment="Top" FontFamily="../Fonts/Poppins/#Poppins" Foreground="Black" Width="290" LineHeight="6" FontSize="17" Margin="22,18,0,0"/>
-            </Border>
-            <Border x:Name="brdArticleMain_Copy" CornerRadius="30" BorderBrush="#FFAC5264" Grid.Column="1" Grid.Row="1" Margin="31,287,464,41" Background="#FFF68E5F"/>
-            <TextBlock x:Name="lblAbout" Grid.Column="1" HorizontalAlignment="Left" Margin="53,97,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Organizirajte svoje omiljene filmove i serije jednostavno i efikasno. Dodajte, mijenjajte ili istražujte naslove prema žanrovima, glumcima i još mnogo toga - sve prema vašim željama." VerticalAlignment="Top" FontFamily="../Fonts/Poppins/#Poppins" Foreground="Black" Width="290" LineHeight="6" FontSize="13"/>
-            <Image x:Name="pbAbout" Grid.Column="1" HorizontalAlignment="Left" Height="326" Margin="197,12,0,0" VerticalAlignment="Top" Width="406" Source="/Images/Discarded idea-rafiki.png" Grid.RowSpan="2"/>
-            <TextBlock x:Name="lblStatisticsMovies" FontFamily="../Fonts/Poppins/#Poppins" Grid.Column="1" HorizontalAlignment="Left" Margin="63,307,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Filmovi:" VerticalAlignment="Top" FontSize="13"/>
-            <TextBlock x:Name="lblStatisticsSeries" FontFamily="../Fonts/Poppins/#Poppins" Grid.Column="1" HorizontalAlignment="Left" Margin="63,342,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Serije:" VerticalAlignment="Top" FontSize="13"/>
-            <TextBlock x:Name="lblStatisticsGenres" FontFamily="../Fonts/Poppins/#Poppins" Grid.Column="1" HorizontalAlignment="Left" Margin="63,376,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Žanrovi:" VerticalAlignment="Top" FontSize="13"/>
-            <TextBlock x:Name="lblSubTitleStatistics" FontSize="17" Foreground="White" Margin="31,241,517,262" FontFamily="../Fonts/Poppins/#Poppins" RenderTransformOrigin="0.388,0.512" Text="Statistika biblioteke" Opacity="0.8" Grid.Column="1" Grid.Row="1"/>
-            <TextBlock x:Name="lblStatisticsGenres_Copy" FontFamily="../Fonts/Poppins/#Poppins" Grid.Column="1" HorizontalAlignment="Left" Margin="63,408,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Glumci:" VerticalAlignment="Top" FontSize="13"/>
-            <TextBlock x:Name="lblStatisticsGenres_Copy1" FontFamily="../Fonts/Poppins/#Poppins" Grid.Column="1" HorizontalAlignment="Left" Margin="63,441,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Redatelji:" VerticalAlignment="Top" FontSize="13"/>
-            <Border x:Name="brdStatisticsIcon" CornerRadius="200" BorderBrush="Transparent" BorderThickness="1" Grid.Column="1" Grid.Row="1" Margin="218,265,438,198" Background="#FFE8A789"/>
-            <Label x:Name="lblStatisticsIcon" Grid.Column="1" Content="📈" HorizontalAlignment="Left" Margin="224,269,0,0" Grid.Row="1" VerticalAlignment="Top" FontFamily="../Fonts/Poppins/#Poppins" FontSize="30"/>
-            <TextBlock x:Name="lblNumberMovies" FontFamily="../Fonts/Poppins/#Poppins" Grid.Column="1" HorizontalAlignment="Left" Margin="179,307,0,0" Grid.Row="1" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" FontSize="13" FontWeight="Bold" RenderTransformOrigin="-0.396,0.274"/>
-            <TextBlock x:Name="lblNumberSeries" FontFamily="../Fonts/Poppins/#Poppins" Grid.Column="1" HorizontalAlignment="Left" Margin="179,342,0,0" Grid.Row="1" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" FontSize="13" FontWeight="Bold" RenderTransformOrigin="-0.396,0.274"/>
-            <TextBlock x:Name="lblNumberGenres" FontFamily="../Fonts/Poppins/#Poppins" Grid.Column="1" HorizontalAlignment="Left" Margin="179,376,0,0" Grid.Row="1" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" FontSize="13" FontWeight="Bold" RenderTransformOrigin="-0.396,0.274"/>
-            <TextBlock x:Name="lblNumberActors" FontFamily="../Fonts/Poppins/#Poppins" Grid.Column="1" HorizontalAlignment="Left" Margin="179,408,0,0" Grid.Row="1" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" FontSize="13" FontWeight="Bold" RenderTransformOrigin="-0.396,0.274"/>
-            <TextBlock x:Name="lblNumberDirectors" FontFamily="../Fonts/Poppins/#Poppins" Grid.Column="1" HorizontalAlignment="Left" Margin="179,441,0,0" Grid.Row="1" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" FontSize="13" FontWeight="Bold" RenderTransformOrigin="-0.396,0.274"/>
-            <Border x:Name="brdArticleSearch" CornerRadius="30" BorderBrush="#FFAC5264" Grid.Column="1" Grid.Row="1" Margin="325,287,66,41" Background="#FF4A306D"/>
-            <TextBlock x:Name="lblSubTitleSearch" FontSize="17" Foreground="White" Margin="325,241,223,246" FontFamily="../Fonts/Poppins/#Poppins" RenderTransformOrigin="0.388,0.512" Text="Pretraga" Opacity="0.8" Grid.Column="1" Grid.Row="1"/>
-            <Border x:Name="brdSearchIcon" CornerRadius="200" BorderBrush="Transparent" BorderThickness="1" Grid.Column="1" Grid.Row="1" Margin="610,265,46,198" Background="#FF988AAB"/>
-            <Button x:Name="btnLinkSearchMovies" Content="Pretraga filmova"
-                Foreground="White"
-                FontSize="16"
-                Background="#FF2B2B2B"
-                BorderBrush="Transparent"
-                FontFamily="../Fonts/Poppins/#Poppins"
-                        Margin="360,368,106,123" Grid.Row="1" Grid.Column="1" Opacity="0.7"
-                        />
-            <Button x:Name="btnLinkSearchSeries" Content="Pretraga serija"
-                Foreground="White"
-                FontSize="16"
-                Background="#FF272727"
-                BorderBrush="Transparent"
-                FontFamily="../Fonts/Poppins/#Poppins"
-                Margin="360,419,106,73" Grid.Row="1" Grid.Column="1" Opacity="0.7"
-                        />
-            <TextBlock x:Name="lblSearchAbout" Grid.Column="1" HorizontalAlignment="Left" Margin="352,306,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="../Fonts/Poppins/#Poppins" Foreground="White" Width="258" LineHeight="6" FontSize="13"><Run Text="Pretra"/><Run Language="hr-hr" Text="ž"/><Run Text="ite unesene filmove i serije "/><Run Language="hr-hr" Text="na temelju vaših interesa"/><Run Text=":"/></TextBlock>
-            <Label x:Name="lblSearchIcon" Grid.Column="1" Content="🔍" HorizontalAlignment="Left" Margin="616,269,0,0" Grid.Row="1" VerticalAlignment="Top" FontFamily="../Fonts/Poppins/#Poppins" FontSize="30"/>
+            <Frame Name="frMainFrame" Content="" Margin="0,0,10,0" NavigationUIVisibility="Hidden" Grid.Column="1" Grid.Row="1" Source="/Pages/Home.xaml"/>
+
         </Grid>
+
+
     </Border>
 </Window>

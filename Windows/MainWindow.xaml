@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Button Name="btnGenres" Content="Žanrovi" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="53" Width="127" Click="btnGenres_Click"/>
-        <Frame Name="MainFrame" BorderThickness="1" Margin="150,10,10,10" NavigationUIVisibility="Hidden" BorderBrush="Black" />
+        <Frame Name="MainFrame" BorderThickness="1" Margin="150,10,10,10" NavigationUIVisibility="Hidden" BorderBrush="Black"/>
 
     </Grid>
 </Window>
