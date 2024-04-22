@@ -39,7 +39,7 @@
                 <TextBlock Grid.Column="3" Text="Redatelj" FontSize="13" Foreground="White" Margin="257,0,-350,0" FontWeight="Bold"/>
             </Grid>
         </Grid>
-        <ListBox x:Name="lbMovie" Margin="16,93,16,19" Background="#FF0E273C" BorderBrush="{x:Null}" SelectionChanged="lbActor_SelectionChanged" MouseDoubleClick="lbMovie_MouseDoubleClick">
+        <ListBox x:Name="lbMovie" Margin="16,93,16,19" Background="#FF0E273C" BorderBrush="{x:Null}" SelectionChanged="lbMovie_SelectionChanged" MouseDoubleClick="lbMovie_MouseDoubleClick">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">

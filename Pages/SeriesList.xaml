@@ -34,12 +34,12 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="Naziv" FontSize="13" Foreground="White" FontWeight="Bold"/>
-                <TextBlock Grid.Column="1" Text="Trajanje (u min)" FontSize="13" Foreground="White" Margin="215,0,-192,0" FontWeight="Bold"/>
-                <TextBlock Grid.Column="2" Text="Godina" FontSize="13" Foreground="White" Margin="227,0,-227,0" FontWeight="Bold"/>
+                <TextBlock Grid.Column="1" Text="Trajanje" FontSize="13" Foreground="White" Margin="215,0,-192,0" FontWeight="Bold"/>
+                <TextBlock Grid.Column="2" Text="Broj sezona" FontSize="13" Foreground="White" Margin="227,0,-227,0" FontWeight="Bold"/>
                 <TextBlock Grid.Column="3" Text="Redatelj" FontSize="13" Foreground="White" Margin="257,0,-350,0" FontWeight="Bold"/>
             </Grid>
         </Grid>
-        <ListBox x:Name="lbSeries" Margin="16,93,16,19" Background="#FF0E273C" BorderBrush="{x:Null}" SelectionChanged="lbActor_SelectionChanged" MouseDoubleClick="lbMovie_MouseDoubleClick">
+        <ListBox x:Name="lbSeries" Margin="16,93,16,19" Background="#FF0E273C" BorderBrush="{x:Null}" SelectionChanged="lbSeries_SelectionChanged" MouseDoubleClick="lbSeries_MouseDoubleClick">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -52,7 +52,7 @@
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" FontSize="13" Foreground="White" Content="{Binding Naziv}"/>
                             <Label Grid.Column="1" FontSize="13" Foreground="White" Content="{Binding Trajanje}"/>
-                            <Label Grid.Column="2" FontSize="13" Foreground="White" Content="{Binding Godina}"/>
+                            <Label Grid.Column="2" FontSize="13" Foreground="White" Content="{Binding BrojSezona}"/>
                             <Label Grid.Column="3" FontSize="13" Foreground="White" Content="{Binding RedateljImePrezime}"/>
 
                         </Grid>
@@ -76,7 +76,7 @@
             BorderBrush="Transparent"
             FontFamily="../Fonts/Poppins/#Poppins"
             Margin="586,15,16,480" Opacity="0.7" Click="btnDelete_Click" IsEnabled="False" RenderTransformOrigin="1.689,0.53"/>
-        <TextBlock x:Name="txtTitleSeries" FontSize="17" Foreground="White" Margin="11,17,469,484" FontFamily="../Fonts/Poppins/#Poppins" RenderTransformOrigin="0.388,0.512" Text="Tablica unesenih filmova:" Opacity="0.8"/>
+        <TextBlock x:Name="txtTitleSeries" FontSize="17" Foreground="White" Margin="11,17,469,484" FontFamily="../Fonts/Poppins/#Poppins" RenderTransformOrigin="0.388,0.512" Text="Tablica unesenih serija:" Opacity="0.8"/>
 
     </Grid>
 </Page>

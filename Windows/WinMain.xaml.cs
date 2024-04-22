@@ -1,19 +1,6 @@
-﻿using FlickFolio;
-using FlickFolio.Windows;
-using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace FlickFolio.Prozori
 {
@@ -50,14 +37,9 @@ namespace FlickFolio.Prozori
             frMainFrame.Navigate(new Uri("./Pages/MovieList.xaml", UriKind.Relative));
         }
 
-        private void btnEdit_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
         private void btnLinkSeries_Click(object sender, RoutedEventArgs e)
         {
-
+            frMainFrame.Navigate(new Uri("./Pages/SeriesList.xaml", UriKind.Relative));
         }
 
         private void btnLinkGenres_Click(object sender, RoutedEventArgs e)

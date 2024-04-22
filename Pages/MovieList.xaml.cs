@@ -22,7 +22,7 @@ namespace FlickFolio.Pages
             RefreshGrid();
         }
 
-        private void lbActor_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void lbMovie_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             btnEdit.IsEnabled = lbMovie.SelectedItem != null;
             btnDelete.IsEnabled = lbMovie.SelectedItem != null;
