@@ -1,5 +1,4 @@
 ﻿using FlickFolio.Models;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,12 +15,31 @@ namespace FlickFolio.Dialogs
         {
             InitializeComponent();
 
-            RefreshGrid();
-
-            CheckEmpty();
+            InitializeDropDowns();
         }
 
-        public Film? Model { get; set; }
+        private Film? Model { get; set; }
+
+        public int? MovieId { get; set; }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            var movie = new Film();
+
+            if (MovieId != null)
+            {
+                using var db = new FlickFolioContext();
+
+                movie = db.Filmovi.First(x => x.Id == MovieId);
+
+                txtId.Text = movie.Id.ToString();
+                txtName.Text = movie.Naziv;
+                txtLenght.Text = movie.Trajanje.ToString();
+                txtYear.Text = movie.Godina.ToString();
+            }
+
+            Model = movie;
+        }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -76,19 +94,6 @@ namespace FlickFolio.Dialogs
             Close();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (Model != null)
-            {
-                txtId.Text = Model.Id.ToString();
-                txtName.Text = Model.Naziv;
-                txtLenght.Text = Model.Trajanje.ToString();
-                txtYear.Text = Model.Godina.ToString();
-            }
-        }
-
-
-
         private void CheckIfNumber(object sender, TextCompositionEventArgs e)
         {
             if (!char.IsDigit(e.Text, e.Text.Length - 1))
@@ -111,44 +116,44 @@ namespace FlickFolio.Dialogs
 
         private void cmbDirectors_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            CheckEmpty();
+            CheckIfValid();
         }
 
         private void txtName_TextChanged(object sender, TextChangedEventArgs e)
         {
-            CheckEmpty();
+            CheckIfValid();
         }
 
         private void txtLenght_TextChanged(object sender, TextChangedEventArgs e)
         {
-            CheckEmpty();
+            CheckIfValid();
         }
 
         private void txtYear_TextChanged(object sender, TextChangedEventArgs e)
         {
-            CheckEmpty();
+            CheckIfValid();
         }
 
         private void lbActors_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            CheckEmpty();
+            CheckIfValid();
         }
 
         private void lbGenres_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            CheckEmpty();
+            CheckIfValid();
         }
 
-        private void RefreshGrid()
+        private void InitializeDropDowns()
         {
             using var db = new FlickFolioContext();
+
             cmbDirectors.ItemsSource = db.Redatelji.ToList();
-            cmbDirectors.SelectedValuePath = "Id";
             lbActors.ItemsSource = db.Glumci.ToList();
             lbGenres.ItemsSource = db.Zanrovi.ToList();
         }
 
-        private void CheckEmpty()
+        private void CheckIfValid()
         {
             if (string.IsNullOrEmpty(txtName.Text) || string.IsNullOrEmpty(txtLenght.Text) || string.IsNullOrEmpty(txtYear.Text) || cmbDirectors.SelectedItem == null || lbActors.SelectedIndex == -1 || lbGenres.SelectedIndex == -1) btnSave.IsEnabled = false;
             else btnSave.IsEnabled = true;

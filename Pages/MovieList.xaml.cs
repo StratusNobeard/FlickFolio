@@ -1,20 +1,9 @@
 ﻿using FlickFolio.Dialogs;
 using FlickFolio.Models;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace FlickFolio.Pages
 {
@@ -58,7 +47,7 @@ namespace FlickFolio.Pages
         {
             var dialog = new MovieDetails
             {
-                Model = null,
+                MovieId = null,
                 Owner = Parent as Window
             };
 
@@ -76,12 +65,16 @@ namespace FlickFolio.Pages
                 Owner = Parent as Window
             };
 
-            dialog.Model = lbMovie.SelectedItem as Film;
-
-            var result = dialog.ShowDialog();
-            if (result.Value)
+            var film = lbMovie.SelectedItem as dynamic;
+            if (film != null)
             {
-                RefreshGrid();
+                dialog.MovieId = film.Id;
+
+                var result = dialog.ShowDialog();
+                if (result.Value)
+                {
+                    RefreshGrid();
+                }
             }
         }
 
