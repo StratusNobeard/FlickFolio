@@ -38,7 +38,6 @@ namespace FlickFolio.Pages
 
         private void RefreshGrid()
         {
-            /*
             using var db = new FlickFolioContext();
 
             var x = db.Filmovi
@@ -51,12 +50,8 @@ namespace FlickFolio.Pages
                     _.Godina,
                     RedateljImePrezime = $"{_.Redatelj.Ime} {_.Redatelj.Prezime}"
                 });
-            
-            lbMovie.ItemsSource = x.ToList();
-            */
 
-            using var db = new FlickFolioContext();
-            lbMovie.ItemsSource = db.Filmovi.ToList();
+            lbMovie.ItemsSource = x.ToList();
         }
 
         private void btnNew_Click(object sender, RoutedEventArgs e)
