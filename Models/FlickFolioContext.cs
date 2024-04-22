@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.IO;
+using System.Runtime.InteropServices.ObjectiveC;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace FlickFolio.Models;
 
@@ -36,6 +39,14 @@ public partial class FlickFolioContext : DbContext
 
     public virtual DbSet<Zanr> Zanrovi { get; set; }
 
+    public DbConnection Connection
+    {
+        get
+        {
+            return this.Database.GetDbConnection();
+        }
+    }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlite($"Data Source={DatabasePath()}");
 
@@ -55,8 +66,8 @@ public partial class FlickFolioContext : DbContext
             entity.ToTable("Film");
 
             entity.HasOne(d => d.Redatelj).WithMany(p => p.Filmovi)
-                .HasForeignKey(d => d.RedateljId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .HasForeignKey(d => d.RedateljId);
+                //.OnDelete(DeleteBehavior.ClientSetNull);
         });
 
         modelBuilder.Entity<FilmGlumac>(entity =>

@@ -37,7 +37,7 @@ namespace FlickFolio.Dialogs
                     .First();
 
                 txtId.Text = movie.Id.ToString();
-                txtName.Text = movie.Naziv;
+                txtName.Text = movie.Naziv.ToString();
                 txtLenght.Text = movie.Trajanje.ToString();
                 txtYear.Text = movie.Godina.ToString();
 
