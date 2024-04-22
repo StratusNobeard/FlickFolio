@@ -1,4 +1,5 @@
 ﻿using FlickFolio.Models;
+using System.Data.Entity;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -30,12 +31,18 @@ namespace FlickFolio.Dialogs
             {
                 using var db = new FlickFolioContext();
 
-                movie = db.Filmovi.First(x => x.Id == MovieId);
+                movie = db.Filmovi
+                    .Where(x => x.Id == MovieId)
+                    .First();
 
                 txtId.Text = movie.Id.ToString();
                 txtName.Text = movie.Naziv;
                 txtLenght.Text = movie.Trajanje.ToString();
                 txtYear.Text = movie.Godina.ToString();
+
+                var redatelj = db.Redatelji.Where(r => r.Id == movie.RedateljId).Single();
+
+                cmbDirectors.SelectedValue = redatelj;
             }
 
             Model = movie;
@@ -149,6 +156,8 @@ namespace FlickFolio.Dialogs
             using var db = new FlickFolioContext();
 
             cmbDirectors.ItemsSource = db.Redatelji.ToList();
+            //cmbDirectors.SelectedValuePath = "Id";
+
             lbActors.ItemsSource = db.Glumci.ToList();
             lbGenres.ItemsSource = db.Zanrovi.ToList();
         }
