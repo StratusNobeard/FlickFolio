@@ -36,7 +36,7 @@
                 <TextBlock Grid.Column="0" Text="Naziv" FontSize="13" Foreground="White" FontWeight="Bold"/>
                 <TextBlock Grid.Column="1" Text="Trajanje (u min)" FontSize="13" Foreground="White" Margin="215,0,-192,0" FontWeight="Bold"/>
                 <TextBlock Grid.Column="2" Text="Godina" FontSize="13" Foreground="White" Margin="227,0,-227,0" FontWeight="Bold"/>
-                <TextBlock Grid.Column="3" Text="Redatelj" FontSize="13" Foreground="White" Margin="227,0,-320,0" FontWeight="Bold"/>
+                <TextBlock Grid.Column="3" Text="Redatelj" FontSize="13" Foreground="White" Margin="257,0,-350,0" FontWeight="Bold"/>
             </Grid>
         </Grid>
         <ListBox x:Name="lbMovie" Margin="16,93,16,19" Background="#FF0E273C" BorderBrush="{x:Null}" SelectionChanged="lbActor_SelectionChanged">
@@ -45,10 +45,10 @@
                     <StackPanel Orientation="Horizontal">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="120"></ColumnDefinition>
+                                <ColumnDefinition Width="250"></ColumnDefinition>
                                 <ColumnDefinition Width="130"></ColumnDefinition>
-                                <ColumnDefinition Width="130"></ColumnDefinition>
-                                <ColumnDefinition Width="130"></ColumnDefinition>
+                                <ColumnDefinition Width="73"></ColumnDefinition>
+                                <ColumnDefinition Width="200"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" FontSize="13" Foreground="White" Content="{Binding Naziv}"/>
                             <Label Grid.Column="1" FontSize="13" Foreground="White" Content="{Binding Trajanje}"/>

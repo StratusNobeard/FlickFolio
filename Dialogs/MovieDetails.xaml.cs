@@ -41,6 +41,9 @@ namespace FlickFolio.Dialogs
                 txtLenght.Text = movie.Trajanje.ToString();
                 txtYear.Text = movie.Godina.ToString();
 
+
+
+                //postavljanje redatelja
                 var redatelj = db.Redatelji.Where(r => r.Id == movie.RedateljId).Single();
                 
                 int selectedIndex = -1;
@@ -56,8 +59,47 @@ namespace FlickFolio.Dialogs
 
                 cmbDirectors.SelectedIndex = selectedIndex;
 
-                
 
+                //postavljanje glumaca
+                var filmGlumci = db.FilmGlumac.Where(r => r.FilmId == movie.Id);
+                var selectedIndices = new List<int>();
+
+                foreach (Glumac glumac in lbActors.Items)
+                {
+                    foreach(FilmGlumac odabrano in filmGlumci)
+                    {
+                        if (glumac.Id == odabrano.GlumacId)
+                        {
+                            selectedIndices.Add(lbActors.Items.IndexOf(glumac));
+                        }
+                    }
+                }
+
+                foreach(int index in selectedIndices)
+                {
+                    lbActors.SelectedItems.Add(lbActors.Items[index]);
+                }
+
+
+                //postavljanje žanrova
+                var filmZanrovi = db.FilmZanr.Where(r => r.FilmId == movie.Id);
+                selectedIndices.Clear();
+
+                foreach (Zanr zanr in lbGenres.Items)
+                {
+                    foreach (FilmZanr odabrano in filmZanrovi)
+                    {
+                        if (zanr.Id == odabrano.ZanrId)
+                        {
+                            selectedIndices.Add(lbGenres.Items.IndexOf(zanr));
+                        }
+                    }
+                }
+
+                foreach (int index in selectedIndices)
+                {
+                    lbGenres.SelectedItems.Add(lbGenres.Items[index]);
+                }
 
             }
 
