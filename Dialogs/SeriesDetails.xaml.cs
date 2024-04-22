@@ -28,6 +28,12 @@ namespace FlickFolio.Dialogs
             InitializeDropDowns();
         }
 
+        public class ListBoxItem
+        {
+            public int RedniBroj { get; set; }
+            public int BrojEpizoda { get; set; }
+        }
+
         private Serija? Model { get; set; }
 
         public int? SeriesId { get; set; }
@@ -120,6 +126,12 @@ namespace FlickFolio.Dialogs
         }
 
 
+        private void RefreshGrid()
+        {
+            using var db = new FlickFolioContext();
+            lbSeasons.ItemsSource = db.Sezone.ToList();
+        }
+
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -144,6 +156,8 @@ namespace FlickFolio.Dialogs
             using var db = new FlickFolioContext();
 
             Model ??= new Serija();
+
+            
 
             Model.Naziv = tbName.Text;
             Model.BrojSezona = int.Parse(tbNumberOfSeasons.Text);
@@ -198,23 +212,57 @@ namespace FlickFolio.Dialogs
 
         private void btnNewSeason_Click(object sender, RoutedEventArgs e)
         {
+            var dialog = new SeasonDetails(lbSeasons.Items.Count);
+            if (dialog.ShowDialog() == true)
+            {
+                int? number = dialog.Number;
 
+                int numberConvert = number.HasValue ? number.Value : 0;
+
+                var item = new ListBoxItem { RedniBroj = lbSeasons.Items.Count + 1, BrojEpizoda = numberConvert};
+
+                lbSeasons.Items.Add(item);
+            }
+
+            UpdateSeasonOrder();
         }
 
         private void btnEditSeason_Click(object sender, RoutedEventArgs e)
         {
+            var dialog = new SeasonDetails(lbSeasons.SelectedIndex);
+            if (dialog.ShowDialog() == true)
+            {
+                int? number = dialog.Number;
+                int numberConvert = number.HasValue ? number.Value : 0;
 
+                var item = new ListBoxItem { RedniBroj = lbSeasons.SelectedIndex, BrojEpizoda = numberConvert };
+                lbSeasons.Items[lbSeasons.SelectedIndex] = item;
+            }
+
+            UpdateSeasonOrder();
         }
 
         private void btnDeleteSeason_Click(object sender, RoutedEventArgs e)
         {
 
+            var dialogResult = MessageBox.Show("Sigurni ste da želite izbrisati sezonu?", "Potvrda", MessageBoxButton.YesNo);
+
+            if (dialogResult == MessageBoxResult.Yes)
+            {
+                lbSeasons.Items.Remove(lbSeasons.SelectedItem);
+            }
+
+            UpdateSeasonOrder();
         }
 
-        private void lbSeries_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+
+        private void lbSeasons_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             btnEditSeason.IsEnabled = lbSeasons.SelectedItem != null;
             btnDeleteSeason.IsEnabled = lbSeasons.SelectedItem != null;
+            btnDown.IsEnabled = lbSeasons.SelectedItem != null;
+            btnUp.IsEnabled = lbSeasons.SelectedItem != null;
         }
 
 
@@ -273,6 +321,55 @@ namespace FlickFolio.Dialogs
         private void lbGenres_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             CheckIfValid();
+        }
+
+        private void btnUp_Click(object sender, RoutedEventArgs e)
+        {
+            ListBoxItem selected = lbSeasons.SelectedItem as ListBoxItem;
+            if (selected != null)
+            {
+                int index = lbSeasons.SelectedIndex;
+                if (index > 0)
+                {
+                    lbSeasons.Items.RemoveAt(index);
+                    lbSeasons.Items.Insert(index - 1, selected);
+                    lbSeasons.SelectedIndex = index - 1;
+                }
+            }
+
+            UpdateSeasonOrder();
+        }
+
+        private void btnDown_Click(object sender, RoutedEventArgs e)
+        {
+            ListBoxItem selected = lbSeasons.SelectedItem as ListBoxItem;
+            if (selected != null)
+            {
+                int index = lbSeasons.SelectedIndex;
+                if (index < lbSeasons.Items.Count - 1)
+                {
+                    lbSeasons.Items.RemoveAt(index);
+                    lbSeasons.Items.Insert(index + 1, selected);
+                    lbSeasons.SelectedIndex = index + 1;
+                }
+            }
+
+            UpdateSeasonOrder();
+        }
+
+        private void UpdateSeasonOrder()
+        {
+            int redniBroj = 1;
+
+            foreach (var item in lbSeasons.Items)
+            {
+                if (item is ListBoxItem listBoxItem)
+                {
+                    listBoxItem.RedniBroj = redniBroj++;
+                }
+            }
+
+            lbSeasons.Items.Refresh();
         }
     }
 }
