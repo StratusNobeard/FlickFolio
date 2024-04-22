@@ -84,7 +84,6 @@ namespace FlickFolio.Dialogs
                 txtName.Text = Model.Naziv;
                 txtLenght.Text = Model.Trajanje.ToString();
                 txtYear.Text = Model.Godina.ToString();
-                //cmbDirectors.SelectedValue = $"{Model.Redatelj.Ime} {Model.Redatelj.Prezime}";
             }
         }
 
