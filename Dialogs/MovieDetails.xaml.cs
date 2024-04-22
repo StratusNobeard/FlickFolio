@@ -1,4 +1,5 @@
 ﻿using FlickFolio.Models;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Windows;
@@ -41,8 +42,23 @@ namespace FlickFolio.Dialogs
                 txtYear.Text = movie.Godina.ToString();
 
                 var redatelj = db.Redatelji.Where(r => r.Id == movie.RedateljId).Single();
+                
+                int selectedIndex = -1;
 
-                cmbDirectors.SelectedValue = redatelj;
+                foreach (Redatelj item in cmbDirectors.Items)
+                {
+                    if (item.Id == redatelj.Id)
+                    {
+                        selectedIndex = cmbDirectors.Items.IndexOf(item);
+                        break;
+                    }
+                }
+
+                cmbDirectors.SelectedIndex = selectedIndex;
+
+                
+
+
             }
 
             Model = movie;
