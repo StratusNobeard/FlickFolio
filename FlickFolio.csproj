@@ -11,6 +11,7 @@
     <None Remove="Fonts\Poppins\Poppins-Italic.ttf" />
     <None Remove="Fonts\Poppins\Poppins-Regular.ttf" />
     <None Remove="Images\logo.ico" />
+    <None Remove="Pages\movie.png" />
     <None Remove="Windows\back.jpg" />
     <None Remove="Windows\back2.png" />
     <None Remove="Windows\Discarded idea-rafiki.png" />
@@ -29,11 +30,12 @@
     <Resource Include="Fonts\Poppins\Poppins-Bold.ttf" />
     <Resource Include="Fonts\Poppins\Poppins-Italic.ttf" />
     <Resource Include="Fonts\Poppins\Poppins-Regular.ttf" />
-    <Resource Include="Images\Discarded idea-rafiki.png" />
+    <Resource Include="Images\home.png" />
     <Resource Include="Images\logo.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\logo.png" />
+    <Resource Include="Pages\movie.png" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Database\flickFolio.db">

@@ -350,7 +350,7 @@ namespace FlickFolio.Dialogs
 
         private void CheckIfValid()
         {
-            if (string.IsNullOrEmpty(tbName.Text) || string.IsNullOrEmpty(tbYearEnd.Text) || string.IsNullOrEmpty(tbYearEnd.Text) || cmbDirectors.SelectedItem == null || lbActors.SelectedIndex == -1 || lbGenres.SelectedIndex == -1 || lbSeasons.Items.Count == 0) btnSave.IsEnabled = false;
+            if (string.IsNullOrEmpty(tbName.Text) || string.IsNullOrEmpty(tbYearEnd.Text) || string.IsNullOrEmpty(tbYearEnd.Text) || cmbDirectors.SelectedItem == null || lbActors.SelectedIndex == -1 || lbGenres.SelectedIndex == -1 || lbSeasons.Items.Count == 0  || int.Parse(tbYearStart.Text) > int.Parse(tbYearEnd.Text)) btnSave.IsEnabled = false;
             else btnSave.IsEnabled = true;
         }
 

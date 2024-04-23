@@ -37,7 +37,7 @@
             Background="#FF2B2B2B"
             BorderBrush="Transparent"
             FontFamily="../Fonts/Poppins/#Poppins"
-            Margin="365,362,91,129" Opacity="0.7"
+            Margin="365,362,91,129" Opacity="0.7" Click="btnLinkSearchMovies_Click"
                         />
         <Button x:Name="btnLinkSearchSeries" Content="Pretraga serija"
             Foreground="White"
@@ -45,7 +45,7 @@
             Background="#FF272727"
             BorderBrush="Transparent"
             FontFamily="../Fonts/Poppins/#Poppins"
-            Margin="365,412,91,79" Opacity="0.7"
+            Margin="365,412,91,79" Opacity="0.7" Click="btnLinkSearchSeries_Click"
                         />
         <TextBlock x:Name="txtSearchAbout" HorizontalAlignment="Left" Margin="357,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="../Fonts/Poppins/#Poppins" Foreground="White" Width="258" LineHeight="6" FontSize="13"><Run Text="Pretra"/><Run Language="hr-hr" Text="ž"/><Run Text="ite unesene filmove i serije "/><Run Language="hr-hr" Text="na temelju vaših interesa"/><Run Text=":"/></TextBlock>
         <Label x:Name="lblSearchIcon" Content="🔍" HorizontalAlignment="Left" Margin="621,262,0,0" VerticalAlignment="Top" FontFamily="../Fonts/Poppins/#Poppins" FontSize="30"/>

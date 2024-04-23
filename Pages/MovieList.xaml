@@ -54,9 +54,9 @@
                             <Label Grid.Column="1" FontSize="13" Foreground="White" Content="{Binding Trajanje}"/>
                             <Label Grid.Column="2" FontSize="13" Foreground="White" Content="{Binding Godina}"/>
                             <Label Grid.Column="3" FontSize="13" Foreground="White" Content="{Binding RedateljImePrezime}"/>
-                            
+
                         </Grid>
-                        
+
 
                     </StackPanel>
                 </DataTemplate>

@@ -1,4 +1,5 @@
 ﻿using FlickFolio.Models;
+using FlickFolio.Prozori;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,8 +25,13 @@ namespace FlickFolio.Pages
         public Home()
         {
             InitializeComponent();
+        }
 
-           
+        private WinMain parentWindow;
+
+        public void SetParentWindow(WinMain parent)
+        {
+            parentWindow = parent;
         }
 
         private void GetCount()
@@ -43,6 +49,16 @@ namespace FlickFolio.Pages
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             GetCount();
+        }
+
+        private void btnLinkSearchMovies_Click(object sender, RoutedEventArgs e)
+        {
+            parentWindow.LinkMovies();
+        }
+
+        private void btnLinkSearchSeries_Click(object sender, RoutedEventArgs e)
+        {
+            parentWindow.LinkSeries();
         }
     }
 

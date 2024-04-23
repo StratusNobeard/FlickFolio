@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Navigation;
+using FlickFolio.Pages;
 
 namespace FlickFolio.Prozori
 {
@@ -14,6 +16,17 @@ namespace FlickFolio.Prozori
         public WinMain()
         {
             InitializeComponent();
+
+            frMainFrame.Navigated += FrMainFrame_Navigated;
+            frMainFrame.Navigate(new Uri("./Pages/Home.xaml", UriKind.Relative));
+        }
+
+        private void FrMainFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+            if (frMainFrame.Content is Home homePage)
+            {
+                homePage.SetParentWindow(this);
+            }
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -56,6 +69,16 @@ namespace FlickFolio.Prozori
         {
             frMainFrame.Navigate(new Uri("./Pages/DirectorList.xaml", UriKind.Relative));
 
+        }
+
+        public void LinkMovies()
+        {
+            frMainFrame.Navigate(new Uri("./Pages/MovieSearch.xaml", UriKind.Relative));
+        }
+
+        public void LinkSeries()
+        {
+            frMainFrame.Navigate(new Uri("./Pages/SeriesSearch.xaml", UriKind.Relative));
         }
     }
 }
