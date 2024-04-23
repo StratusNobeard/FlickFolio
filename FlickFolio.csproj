@@ -11,6 +11,7 @@
     <None Remove="Fonts\Poppins\Poppins-Italic.ttf" />
     <None Remove="Fonts\Poppins\Poppins-Regular.ttf" />
     <None Remove="Images\logo.ico" />
+    <None Remove="Images\series.png" />
     <None Remove="Pages\movie.png" />
     <None Remove="Windows\back.jpg" />
     <None Remove="Windows\back2.png" />
@@ -35,7 +36,13 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\logo.png" />
+    <Resource Include="Images\series.png" />
     <Resource Include="Pages\movie.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Pages\SeriesSearch.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Update="Database\flickFolio.db">
