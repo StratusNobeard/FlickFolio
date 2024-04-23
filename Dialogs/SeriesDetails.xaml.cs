@@ -21,12 +21,18 @@ namespace FlickFolio.Dialogs
     /// </summary>
     public partial class SeriesDetails : Window
     {
-        public SeriesDetails()
+        public SeriesDetails(bool update)
         {
             InitializeComponent();
 
             InitializeDropDowns();
+
+            CheckIfValid();
+
+            Update = update;
         }
+
+        public bool Update { get; set; }
 
         public class ListBoxItem
         {
@@ -47,6 +53,7 @@ namespace FlickFolio.Dialogs
 
             if (SeriesId != null)
             {
+
                 using var db = new FlickFolioContext();
 
                 series = db.Serije
@@ -55,7 +62,6 @@ namespace FlickFolio.Dialogs
 
                 tbId.Text = series.Id.ToString();
                 tbName.Text = series.Naziv.ToString();
-                tbNumberOfSeasons.Text = series.BrojSezona.ToString();
                 tbYearStart.Text = series.PocetnaGodina.ToString();
                 tbYearEnd.Text = series.ZavrsnaGodina.ToString();
 
@@ -119,17 +125,24 @@ namespace FlickFolio.Dialogs
                     lbGenres.SelectedItems.Add(lbGenres.Items[index]);
                 }
 
+
+                //postavljanje listboxa
+                var skup = db.Sezone
+                    .Where(s => s.SerijaId == series.Id)
+                    .Select(s => s.BrojEpizoda)
+                    .ToList();
+
+                foreach (int item in skup)
+                {
+                    var listItem = new ListBoxItem { RedniBroj = lbSeasons.Items.Count + 1, BrojEpizoda = item };
+                    lbSeasons.Items.Add(listItem);
+                }
+
+                UpdateSeasonOrder();
             }
 
             Model = series;
 
-        }
-
-
-        private void RefreshGrid()
-        {
-            using var db = new FlickFolioContext();
-            lbSeasons.ItemsSource = db.Sezone.ToList();
         }
 
 
@@ -160,7 +173,7 @@ namespace FlickFolio.Dialogs
             
 
             Model.Naziv = tbName.Text;
-            Model.BrojSezona = int.Parse(tbNumberOfSeasons.Text);
+            Model.BrojSezona = lbSeasons.Items.Count;
             Model.PocetnaGodina = int.Parse(tbYearStart.Text);
             Model.ZavrsnaGodina = int.Parse(tbYearEnd.Text);
 
@@ -168,18 +181,32 @@ namespace FlickFolio.Dialogs
             var selectedDirector = cmbDirectors.SelectedItem as Redatelj;
             Model.RedateljId = selectedDirector.Id;
 
-            var selectedActors = lbActors.SelectedItems.Cast<Glumac>().ToList();
+            //sezone
 
-            foreach (var actor in selectedActors)
+            
+
+            var existingActors = db.SerijaGlumac.Where(sg => sg.SerijaId == Model.Id).ToList();
+            db.SerijaGlumac.RemoveRange(existingActors);
+
+            var existingGenres = db.SerijaZanr.Where(sz => sz.SerijaId == Model.Id).ToList();
+            db.SerijaZanr.RemoveRange(existingGenres);
+
+            var selectedActorIds = lbActors.SelectedItems.Cast<Glumac>().Select(a => a.Id).ToList();
+            foreach (var actorId in selectedActorIds)
             {
-                Model.SerijaGlumac.Add(new SerijaGlumac { SerijaId = Model.Id, GlumacId = actor.Id });
+                if (!existingActors.Any(sg => sg.GlumacId == actorId))
+                {
+                    Model.SerijaGlumac.Add(new SerijaGlumac { SerijaId = Model.Id, GlumacId = actorId });
+                }
             }
 
-            var selectedGenres = lbGenres.SelectedItems.Cast<Zanr>().ToList();
-
-            foreach (var genre in selectedGenres)
+            var selectedGenreIds = lbGenres.SelectedItems.Cast<Zanr>().Select(g => g.Id).ToList();
+            foreach (var genreId in selectedGenreIds)
             {
-                Model.SerijaZanr.Add(new SerijaZanr { SerijaId = Model.Id, ZanrId = genre.Id });
+                if (!existingGenres.Any(sz => sz.ZanrId == genreId))
+                {
+                    Model.SerijaZanr.Add(new SerijaZanr { SerijaId = Model.Id, ZanrId = genreId });
+                }
             }
 
             if (Model.Id == 0)
@@ -192,6 +219,37 @@ namespace FlickFolio.Dialogs
             }
 
             db.SaveChanges();
+
+
+
+            var connection = db.Connection;
+            connection.Open();
+
+            var command = connection.CreateCommand();
+            command.CommandText = "PRAGMA foreign_keys = 0;";
+            command.ExecuteNonQuery();
+
+
+            var existingSeasons = db.Sezone.Where(s => s.SerijaId == Model.Id).ToList();
+            if (existingSeasons.Count != 0)
+            {
+                db.Sezone.RemoveRange(existingSeasons);
+            }
+
+            foreach (ListBoxItem listBoxItem in lbSeasons.Items)
+            {
+                var sezona = new Sezona
+                {
+                    RedniBroj = listBoxItem.RedniBroj,
+                    BrojEpizoda = listBoxItem.BrojEpizoda,
+                    SerijaId = Model.Id
+                };
+
+                db.Sezone.Add(sezona);
+            }
+
+            db.SaveChanges();
+
 
             DialogResult = true;
             Close();
@@ -224,6 +282,7 @@ namespace FlickFolio.Dialogs
                 lbSeasons.Items.Add(item);
             }
 
+            CheckIfValid();
             UpdateSeasonOrder();
         }
 
@@ -239,6 +298,7 @@ namespace FlickFolio.Dialogs
                 lbSeasons.Items[lbSeasons.SelectedIndex] = item;
             }
 
+            CheckIfValid();
             UpdateSeasonOrder();
         }
 
@@ -252,6 +312,7 @@ namespace FlickFolio.Dialogs
                 lbSeasons.Items.Remove(lbSeasons.SelectedItem);
             }
 
+            CheckIfValid();
             UpdateSeasonOrder();
         }
 
@@ -289,7 +350,7 @@ namespace FlickFolio.Dialogs
 
         private void CheckIfValid()
         {
-            if (string.IsNullOrEmpty(tbName.Text) || string.IsNullOrEmpty(tbNumberOfSeasons.Text) || string.IsNullOrEmpty(tbYearEnd.Text) || string.IsNullOrEmpty(tbYearEnd.Text) || cmbDirectors.SelectedItem == null || lbActors.SelectedIndex == -1 || lbGenres.SelectedIndex == -1 || lbSeasons.Items.Count == 0) btnSave.IsEnabled = false;
+            if (string.IsNullOrEmpty(tbName.Text) || string.IsNullOrEmpty(tbYearEnd.Text) || string.IsNullOrEmpty(tbYearEnd.Text) || cmbDirectors.SelectedItem == null || lbActors.SelectedIndex == -1 || lbGenres.SelectedIndex == -1 || lbSeasons.Items.Count == 0) btnSave.IsEnabled = false;
             else btnSave.IsEnabled = true;
         }
 
@@ -335,6 +396,7 @@ namespace FlickFolio.Dialogs
                     lbSeasons.Items.Insert(index - 1, selected);
                     lbSeasons.SelectedIndex = index - 1;
                 }
+                CheckIfValid();
             }
 
             UpdateSeasonOrder();
@@ -352,6 +414,7 @@ namespace FlickFolio.Dialogs
                     lbSeasons.Items.Insert(index + 1, selected);
                     lbSeasons.SelectedIndex = index + 1;
                 }
+                CheckIfValid();
             }
 
             UpdateSeasonOrder();

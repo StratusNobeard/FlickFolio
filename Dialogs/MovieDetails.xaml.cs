@@ -124,18 +124,31 @@ namespace FlickFolio.Dialogs
             var selectedDirector = cmbDirectors.SelectedItem as Redatelj;
             Model.RedateljId = selectedDirector.Id;
 
-            var selectedActors = lbActors.SelectedItems.Cast<Glumac>().ToList();
 
-            foreach (var actor in selectedActors)
+
+            var existingActors = db.FilmGlumac.Where(sg => sg.FilmId == Model.Id).ToList();
+            db.FilmGlumac.RemoveRange(existingActors);
+
+            var existingGenres = db.FilmZanr.Where(sz => sz.FilmId == Model.Id).ToList();
+            db.FilmZanr.RemoveRange(existingGenres);
+
+
+            var selectedActorIds = lbActors.SelectedItems.Cast<Glumac>().Select(a => a.Id).ToList();
+            foreach (var actorId in selectedActorIds)
             {
-                Model.FilmGlumac.Add(new FilmGlumac { FilmId = Model.Id, GlumacId = actor.Id });
+                if (!existingActors.Any(sg => sg.GlumacId == actorId))
+                {
+                    Model.FilmGlumac.Add(new FilmGlumac { FilmId = Model.Id, GlumacId = actorId });
+                }
             }
 
-            var selectedGenres = lbGenres.SelectedItems.Cast<Zanr>().ToList();
-
-            foreach (var genre in selectedGenres)
+            var selectedGenreIds = lbGenres.SelectedItems.Cast<Zanr>().Select(g => g.Id).ToList();
+            foreach (var genreId in selectedGenreIds)
             {
-                Model.FilmZanr.Add(new FilmZanr { FilmId = Model.Id, ZanrId = genre.Id });
+                if (!existingGenres.Any(sz => sz.ZanrId == genreId))
+                {
+                    Model.FilmZanr.Add(new FilmZanr { FilmId = Model.Id, ZanrId = genreId });
+                }
             }
 
             if (Model.Id == 0)
@@ -214,7 +227,6 @@ namespace FlickFolio.Dialogs
             using var db = new FlickFolioContext();
 
             cmbDirectors.ItemsSource = db.Redatelji.ToList();
-            //cmbDirectors.SelectedValuePath = "Id";
 
             lbActors.ItemsSource = db.Glumci.ToList();
             lbGenres.ItemsSource = db.Zanrovi.ToList();

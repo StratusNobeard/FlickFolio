@@ -50,7 +50,7 @@ namespace FlickFolio.Pages
 
         private void btnNew_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new SeriesDetails
+            var dialog = new SeriesDetails(false)
             {
                 SeriesId = null,
                 Owner = Parent as Window
@@ -65,7 +65,7 @@ namespace FlickFolio.Pages
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new SeriesDetails
+            var dialog = new SeriesDetails(true)
             {
                 Owner = Parent as Window
             };
@@ -143,17 +143,14 @@ namespace FlickFolio.Pages
 
         public static string ShowSeriesInfo(Serija serija, FlickFolioContext db)
         {
-            /*
             var sb = new StringBuilder();
-            sb.AppendLine($"Naziv: {film.Naziv}");
-            sb.AppendLine($"Trajanje: {film.Trajanje} min");
-            sb.AppendLine($"Godina: {film.Godina}");
+            sb.AppendLine($"Naziv: {serija.Naziv}");
+            sb.AppendLine($"Pocetna godina: {serija.PocetnaGodina}");
+            sb.AppendLine($"Zavrsna godina: {serija.ZavrsnaGodina}");
+            sb.AppendLine($"Broj sezona: {serija.BrojSezona}");
 
-            var glumci = db.FilmGlumac
-                            .Where(fg => fg.FilmId == film.Id)
-                            .Select(fg => $"{fg.Glumac.Ime} {fg.Glumac.Prezime}");
 
-            var redatelj = db.Redatelji.FirstOrDefault(r => r.Id == film.RedateljId);
+            var redatelj = db.Redatelji.FirstOrDefault(r => r.Id == serija.RedateljId);
             if (redatelj != null)
             {
                 sb.AppendLine($"Redatelj: {redatelj.Ime} {redatelj.Prezime}");
@@ -164,14 +161,18 @@ namespace FlickFolio.Pages
             }
 
 
+            var glumci = db.SerijaGlumac
+                            .Where(fg => fg.SerijaId == serija.Id)
+                            .Select(fg => $"{fg.Glumac.Ime} {fg.Glumac.Prezime}");
             sb.AppendLine("Glumci:");
             foreach (var glumac in glumci)
             {
                 sb.AppendLine($"- {glumac}");
             }
 
-            var zanrovi = db.FilmZanr
-                            .Where(fz => fz.FilmId == film.Id)
+
+            var zanrovi = db.SerijaZanr
+                            .Where(fz => fz.SerijaId == serija.Id)
                             .Select(fz => fz.Zanr.Naziv);
 
             sb.AppendLine("Žanrovi:");
@@ -179,10 +180,16 @@ namespace FlickFolio.Pages
             {
                 sb.AppendLine($"- {zanr}");
             }
-            return sb.ToString();
-            */
 
-            return "test";
+            var sezone = db.Sezone.Where(s => s.SerijaId == serija.Id);
+
+            sb.AppendLine("Sezone:");
+            foreach (var sezona in sezone)
+            {
+                sb.AppendLine($"{sezona.RedniBroj}. sezona, broj epizoda: {sezona.BrojEpizoda}");
+            }
+
+            return sb.ToString();
 
         }
     }
